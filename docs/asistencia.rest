@@ -1,0 +1,32 @@
+GET http://127.0.0.1:8000/api/v1/asistencia
+Accept: application/json
+
+### Registrar asistencia
+POST http://127.0.0.1:8000/api/v1/asistencia
+Accept: application/json
+Content-Type: application/json
+
+{
+    "falta1": "nel",
+    "falta2": "nel",
+    "tardanza1": "nel",
+    "tardanza2": "nel",
+    "alumno_id": 1
+}
+
+### Modificar asistencias
+PATCH http://127.0.0.1:8000/api/v1/asistencia/3
+Accept: application/json
+Content-Type: application/json
+
+{
+    "falta1": "si",
+    "falta2": "no",
+    "tardanza1": "no",
+    "tardanza2": "no",
+    "alumno_id": 1
+}
+
+### para eliminar asistencia
+DELETE http://127.0.0.1:8000/api/v1/asistencia/3
+Accept: application/json

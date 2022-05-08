@@ -1,0 +1,25 @@
+GET http://127.0.0.1:8000/api/v1/nivel
+Accept: application/json
+Content-Type: application/json
+
+###Registrar nivel
+POST http://127.0.0.1:8000/api/v1/nivel
+Accept: application/json
+Content-Type: application/json
+
+{
+    "niv_nom": "nivel 33"
+}
+
+### Modificar nivel
+PATCH http://127.0.0.1:8000/api/v1/nivel/3
+Accept: application/json
+Content-Type: application/json
+
+{
+    "niv_nom": "nivel 3sd3"
+}
+
+### Eliminar nivel
+DELETE http://127.0.0.1:8000/api/v1/nivel/3
+Accept: application/json

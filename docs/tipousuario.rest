@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8000/api/v1/tipousuario
+Accept: application/json
+Content-Type: application/json
+
+###Registrar tipousuario
+POST http://127.0.0.1:8000/api/v1/tipousuario
+Accept: application/json
+Content-Type: application/json
+
+{
+    "tipo_nom": "Miher02",
+    "tipo_descripcion": "Director",
+    "estado": "activo"
+}
+
+### Modificar tipousuario
+PATCH http://127.0.0.1:8000/api/v1/tipousuario/2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "tipo_nom": "Miher03",
+    "tipo_descripcion": "jefe",
+    "estado": "activo"
+}
+
+### Eliminar tipousuario
+DELETE http://127.0.0.1:8000/api/v1/tipousuario/2
+Accept: application/json

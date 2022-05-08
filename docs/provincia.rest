@@ -1,0 +1,27 @@
+GET http://127.0.0.1:8000/api/v1/provincia
+Accept: application/json
+Content-Type: application/json
+
+###Registrar provincia
+POST http://127.0.0.1:8000/api/v1/provincia
+Accept: application/json
+Content-Type: application/json
+
+{
+    "prov_nom": "huariaca",
+    "departamento_id": 2
+}
+
+### Modificar provincia
+PATCH http://127.0.0.1:8000/api/v1/provincia/3
+Accept: application/json
+Content-Type: application/json
+
+{
+    "prov_nom": "Pasco",
+    "departamento_id": 2
+}
+
+### Eliminar provincia
+DELETE http://127.0.0.1:8000/api/v1/provincia/4
+Accept: application/json

@@ -1,0 +1,26 @@
+GET http://127.0.0.1:8000/api/v1/anioacademico
+Accept: application/json
+
+###Registrar AñoAcademico
+POST  http://127.0.0.1:8000/api/v1/anioacademico
+Accept: application/json
+Content-Type: application/json
+
+{
+    "anio_nom": "Año de miguel grauc",
+    "anio_detalle": "año de exito"
+}
+
+###actualizar registro de año
+PATCH http://127.0.0.1:8000/api/v1/anioacademico/2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "anio_nom": "Año de Miguel Grau",
+    "anio_detalle": "año de exito"
+}
+
+###Eliminar registro de año academico
+DELETE http://127.0.0.1:8000/api/v1/anioacademico/2
+Accept: application/json

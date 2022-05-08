@@ -1,0 +1,28 @@
+GET http://127.0.0.1:8000/api/v1/distrito
+Accept: application/json
+Content-Type: application/json
+
+###Registrar distrito
+POST http://127.0.0.1:8000/api/v1/distrito
+Accept: application/json
+Content-Type: application/json
+
+{
+    "dist_nom": "amarilis",
+    "provincia_id": 1
+}
+
+### Modificar distrito
+PATCH http://127.0.0.1:8000/api/v1/distrito/2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "dist_nom": "Daniel Carrion",
+    "provincia_id": 1
+}
+
+### Eliminar distrito
+DELETE http://127.0.0.1:8000/api/v1/distrito/2
+Accept: application/json
+

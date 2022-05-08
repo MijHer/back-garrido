@@ -1,0 +1,32 @@
+GET http://127.0.0.1:8000/api/v1/pago
+Accept: application/json
+
+###Registrar pago
+POST http://127.0.0.1:8000/api/v1/pago
+Accept: application/json
+Content-Type: application/json
+
+{
+    "pago_fecha": "20/08/2022",
+    "pago_monto": 225,
+    "pago_concepto": "pago del mes de marzo",
+    "pago_periodo": "abril - mayo",
+    "alumno_id": 2
+}
+
+###modificar pago
+PATCH http://127.0.0.1:8000/api/v1/pago/2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "pago_fecha": "20/08/2022",
+    "pago_monto": 150,
+    "pago_concepto": "pago del mes de marzo",
+    "pago_periodo": "abril - mayo",
+    "alumno_id": 2
+}
+
+###eliminar pago
+DELETE http://127.0.0.1:8000/api/v1/pago/7
+Accept: application/json

@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8000/api/v1/grado
+Accept: application/json
+Content-Type: application/json
+
+###Registrar grado
+POST http://127.0.0.1:8000/api/v1/grado
+Accept: application/json
+Content-Type: application/json
+
+{
+    "gra_nom": "tercero",
+    "gra_detalle": "solo alfas",
+    "nivel_id": 1
+}
+
+### Modificar grado
+PATCH http://127.0.0.1:8000/api/v1/grado/4
+Accept: application/json
+Content-Type: application/json
+
+{
+    "gra_nom": "sexto",
+    "gra_detalle": "solo pechopelado",
+    "nivel_id": 2
+}
+
+### Eliminar grado
+DELETE http://127.0.0.1:8000/api/v1/grado/4
+Accept: application/json

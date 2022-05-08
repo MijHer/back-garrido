@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\Provincia;
+use Illuminate\Http\Request;
+
+class ProvinciaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $provincia = Provincia::get();
+        return response()->json($provincia, 200);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'prov_nom' => 'required',
+            'departamento_id' => 'required'
+        ]);
+        $provincia = new Provincia();
+        $provincia->prov_nom = $request->prov_nom;
+        $provincia->departamento_id = $request->departamento_id;
+        $provincia->save();
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Provincia registrado",
+            "error" => false
+        ], 201);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $provincia = Provincia::FindOrFail($id);
+        return response()->json([
+            "status" => 1,
+            "data" => $provincia,
+            "error" => false
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $provincia = Provincia::FindOrFail($id);
+        $provincia->prov_nom = $request->prov_nom;
+        $provincia->departamento_id = $request->departamento_id;
+        $provincia->save();
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Provincia Modificada",
+            "error" => false
+        ], 201);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $provincia = Provincia::FindOrFail($id);
+        $provincia->delete();
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Provincia Elimindo",
+            "error" => false
+        ], 200);
+    }
+}

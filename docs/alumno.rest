@@ -1,0 +1,114 @@
+GET http://127.0.0.1:8000/api/v1/alumno
+Accept: application/json
+
+### Registrar alumnos
+POST http://127.0.0.1:8000/api/v1/alumno
+Accept: application/json
+Content-Type: application/json
+
+{
+    "alu_foto": "foto",
+    "alu_nom": "Marco polo",
+    "alu_app": "Guerra",
+    "alu_apm": "Gonzalez",
+    "alu_fnac": "20/07/86",
+    "alu_tipo_doc": "DNI",
+    "alu_nmr_doc": 15489615,
+    "alu_grado": "Quinto",
+    "alu_pais" : "Peru",
+    "alu_departamento": "Pasco",
+    "alu_provincia": "Pasco",
+    "alu_distrito": "Huariaca",
+    "alu_cert_discapacidad": "No",
+    "alu_tipo_discapacidad": "Ninguna",
+    "alu_nmr_hermanos": 4,
+    "alu_lugar_ocupa": 3,
+    "alu_sexo": "Masculino",
+    "alu_lengua_materna": "Español",
+    "alu_lengua_materna2": "ninguna",
+    "alu_tipo_sangre": "OH",
+    "alu_nacimiento_registrado": "20/07/86",
+    "alu_religion": "Evangelico",
+    "alu_nom_madre": "Isidora",
+    "alu_app_madre": "Castañeda",
+    "alu_apm_madre": "Yacolca",
+    "alu_tipo_doc_madre": "DNI",
+    "alu_dni_madre": 36521548,
+    "alu_civil_madre": "casada",
+    "alu_vive_madre": "Si",
+    "alu_fnca_madre": "06/04/52",
+    "alu_vive_con_este_madre": "Si",
+    "alu_grado_inst_madre": "Secundaria",
+    "alu_ocupacion_madre": "Ama de casa",
+    "alu_religion_madre": "Evangelica",
+    "alu_nom_padre": "Lorenzo",
+    "alu_app_padre": "Cordova",
+    "alu_apm_padre": "Garcia",
+    "alu_tipo_doc_padre": "DNI",
+    "alu_dni_padre": 15489654,
+    "alu_vive_padre": "Si",
+    "alu_fnca_padre": "30/08/52",
+    "alu_vive_con_este_padre": "Si",
+    "alu_grado_inst_padre": "Superior",
+    "alu_ocupacion_padre": "Teconico Enfermero",
+    "alu_religion_padre": "Evengelico",
+    "alu_civil_padre": "casado"
+}
+
+### Actualizar registro de alumno
+PATCH http://127.0.0.1:8000/api/v1/alumno/2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "alu_foto": "foto",
+    "alu_nom": "Maria Ruth",
+    "alu_app": "Guerra",
+    "alu_apm": "Gonzalez",
+    "alu_fnac": "20/07/86",
+    "alu_tipo_doc": "DNI",
+    "alu_nmr_doc": 44070633,
+    "alu_grado": "Quinto",
+    "alu_pais" : "Peru",
+    "alu_departamento": "Pasco",
+    "alu_provincia": "Pasco",
+    "alu_distrito": "Huariaca",
+    "alu_cert_discapacidad": "No",
+    "alu_tipo_discapacidad": "Ninguna",
+    "alu_nmr_hermanos": 4,
+    "alu_lugar_ocupa": 3,
+    "alu_sexo": "Masculino",
+    "alu_lengua_materna": "Español",
+    "alu_lengua_materna2": "ninguna",
+    "alu_tipo_sangre": "OH",
+    "alu_nacimiento_registrado": "20/07/86",
+    "alu_religion": "Evangelico",
+    "alu_nom_madre": "Isidora",
+    "alu_app_madre": "Castañeda",
+    "alu_apm_madre": "Yacolca",
+    "alu_tipo_doc_madre": "DNI",
+    "alu_dni_madre": 44070637,
+    "alu_civil_madre": "casada",
+    "alu_vive_madre": "Si",
+    "alu_fnca_madre": "06/04/52",
+    "alu_vive_con_este_madre": "Si",
+    "alu_grado_inst_madre": "Secundaria",
+    "alu_ocupacion_madre": "Ama de casa",
+    "alu_religion_madre": "Evangelica",
+    "alu_nom_padre": "Lorenzo",
+    "alu_app_padre": "Cordova",
+    "alu_apm_padre": "Garcia",
+    "alu_tipo_doc_padre": "DNI",
+    "alu_dni_padre": 44070639,
+    "alu_vive_padre": "Si",
+    "alu_fnca_padre": "30/08/52",
+    "alu_vive_con_este_padre": "Si",
+    "alu_grado_inst_padre": "Superior",
+    "alu_ocupacion_padre": "Teconico Enfermero",
+    "alu_religion_padre": "Evengelico",
+    "alu_civil_padre": "casado"
+}
+
+### Eliminar registro de alumno
+DELETE http://127.0.0.1:8000/api/v1/alumno/3
+Accept: application/json

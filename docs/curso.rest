@@ -1,0 +1,32 @@
+GET http://127.0.0.1:8000/api/v1/curso
+Accept: application/json
+
+### Registrar curso
+POST http://127.0.0.1:8000/api/v1/curso
+Accept: application/json
+Content-Type: application/json
+
+{
+    "cur_nom": "Fisica Moderna",
+    "cur_descripcion": "Fisica primaria",
+    "cur_grado": "quinto - sexto",
+    "cur_anio": 2022,
+    "profesor_id": 1
+}
+
+### Modificar cursos
+PATCH http://127.0.0.1:8000/api/v1/curso/3
+Accept: application/json
+Content-Type: application/json
+
+{
+    "cur_nom": "Religion",
+    "cur_descripcion": "Religion Secundaria",
+    "cur_grado": "quinto - sexto",
+    "cur_anio": 2022,
+    "profesor_id": 1
+}
+
+### para eliminar curso
+DELETE http://127.0.0.1:8000/api/v1/curso/4
+Accept: application/json

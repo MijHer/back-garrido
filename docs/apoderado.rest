@@ -1,0 +1,41 @@
+GET http://127.0.0.1:8000/api/v1/apoderado
+Accept: application/json
+
+### Registrar apoderado
+POST http://127.0.0.1:8000/api/v1/apoderado
+Accept: application/json
+Content-Type: application/json
+
+{
+    "apo_nom": "maldini",
+    "apo_app": "Italini",
+    "apo_apm": "Angulo",
+    "apo_dni": 91478569,
+    "apo_telf": "958788856",
+    "apo_dir": "Alamos",
+    "apo_fnac": "15/12/59",
+    "apo_vinculo": "Tio",
+    "apo_grado_inst": "Superior",
+    "alumno_id": 1
+}
+### para modificar datos de apoderado
+PATCH http://127.0.0.1:8000/api/v1/apoderado/3
+Accept: application/json
+Content-Type: application/json
+
+{
+    "apo_nom": "Benzema",
+    "apo_app": "Italini",
+    "apo_apm": "Angulo",
+    "apo_dni": 85478569,
+    "apo_telf": "958788856",
+    "apo_dir": "Alamos",
+    "apo_fnac": "15/12/59",
+    "apo_vinculo": "Tio",
+    "apo_grado_inst": "Superior",
+    "alumno_id": 1   
+}
+### para eliminar registro de apoderado
+DELETE http://127.0.0.1:8000/api/v1/apoderado/3
+Accept: application/json
+
