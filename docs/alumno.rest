@@ -13,7 +13,7 @@ Content-Type: application/json
     "alu_apm": "Gonzalez",
     "alu_fnac": "20/07/86",
     "alu_tipo_doc": "DNI",
-    "alu_nmr_doc": 15489615,
+    "alu_nmr_doc": 15119615,
     "alu_grado": "Quinto",
     "alu_pais" : "Peru",
     "alu_departamento": "Pasco",
@@ -108,6 +108,9 @@ Content-Type: application/json
     "alu_religion_padre": "Evengelico",
     "alu_civil_padre": "casado"
 }
+### ver detalle de alumno
+GET http://127.0.0.1:8000/api/v1/alumno/16
+Accept: application/json
 
 ### Eliminar registro de alumno
 DELETE http://127.0.0.1:8000/api/v1/alumno/3

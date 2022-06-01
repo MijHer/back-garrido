@@ -11,9 +11,9 @@ class Alumno extends Model
 
     protected $guarded = [];
 
-    public function apoderado()
+    public function apoderados()
     {
-        return $this->belongsTo(Apoderado::class);
+        return $this->hasMany(Apoderado::class);
     }
 
     public function aistencia()

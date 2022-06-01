@@ -16,7 +16,7 @@ class ProfesorController extends Controller
      */
     public function index()
     {
-        $profesor = Profesor::get();
+        $profesor = Profesor::paginate();
         return response()->json($profesor, 200);
     }
 

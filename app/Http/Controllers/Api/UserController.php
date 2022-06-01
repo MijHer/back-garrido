@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SaveUserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,10 +14,38 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function login(Request $request)
     {
-        $user = User::get();
-        return response()->json($user, 200);
+        $request->validate([
+            "email" => "required|email",
+            "password" => "required"
+        ]);
+
+        $user = User::where("email", "=", $request->email)->first();
+        if(isset($user->id)){
+            if(Hash::check($request->password, $user->password)){
+                $token = $user->createToken('auth_token')->plainTextToken;
+                return response()->json([
+                    "status" => 1,
+                    "mensaje" => "Usuario logueado",
+                    "user" => $user,
+                    "error" => false,
+                    "access_token" => $token
+                ], 200);
+            }else{
+                return response()->json([
+                    "status" => 0,
+                    "mensaje" => "La contraseña es incorrecta",
+                    "error" => true
+                ], 404);
+            }
+        }else{
+            return response()->json([
+                "status" => 0,
+                "mensaje" => "Credenciales incorrectas",
+                "error" => true
+            ], 404);
+        }
     }
 
     /**
@@ -26,10 +54,33 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveUserRequest $request)
-    {
+    public function registro(Request $request)
+    {   
+        $request->validate([
+            'name' => 'required',
+            'usu_dni' => 'required|max:8|unique:users',
+            'email' => 'required|email|unique:users',
+            'usu_user' => 'required',
+            'password' => 'required|min:4',
+            'usu_dir' => 'required',
+            'usu_telf' => 'required|max:9',
+            'profesor_id' => 'required',
+            'tipousuario_id' => 'required',
+            'alumno_id' => 'required'
+        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->usu_dni = $request->usu_dni;
+        $user->email  = $request->email;
+        $user->usu_user = $request->usu_user;
+        $user->password = Hash::make($request->password);
+        $user->usu_dir = $request->usu_dir;
+        $user->usu_telf = $request->usu_telf;
+        $user->profesor_id = $request->profesor_id;
+        $user->tipousuario_id = $request->tipousuario_id;
+        $user->alumno_id = $request->alumno_id;
+        $user->save();
         
-        User::create($request->validated());
         return response()->json([
             "status" => 1,
             "mensaje" => "Usuario registrado",
@@ -60,10 +111,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SaveUserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $user = User::FindOrFail($id);
-        $user->update($request->validated());
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->usu_dni = $request->usu_dni;
+        $user->email  = $request->email;
+        $user->usu_user = $request->usu_user;
+        $user->password = $request->password;
+        $user->usu_dir = $request->usu_dir;
+        $user->usu_telf = $request->usu_telf;
+        $user->profesor_id = $request->profesor_id;
+        $user->tipousuario_id = $request->tipousuario_id;
+        $user->alumno_id = $request->alumno_id;
+        $user->save();
         return response()->json([
             "status" => 1,
             "mensaje" => "Usuario actualizado",

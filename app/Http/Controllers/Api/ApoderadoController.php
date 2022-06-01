@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Apoderado;
+use App\Models\Alumno;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveApoderadoRequest;
 
@@ -16,7 +17,7 @@ class ApoderadoController extends Controller
      */
     public function index()
     {
-        $apoderado = Apoderado::paginate();
+        $apoderado = Apoderado::with('alumno')->paginate();
         return response()->json($apoderado, 200);
     }
 

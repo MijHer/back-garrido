@@ -1,18 +1,24 @@
-GET http://127.0.0.1:8000/api/v1/user
-Accept: application/json
-
-###registrar usuario
-POST http://127.0.0.1:8000/api/v1/user
+POST  http://127.0.0.1:8000/api/v1/user/login
 Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Usuario 2",
-    "usu_dni": 47741712,
     "email": "miher@mail.com",
-    "email_verified_at": "",
+    "password": "mhmiher072440"
+}
+
+###registrar usuario
+POST http://127.0.0.1:8000/api/v1/user/registro
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Usuario 1",
+    "usu_dni": 41070636,
+    "email": "miher@mail.com",
     "usu_user": "miher",
-    "password": "miher123456",    
+    "password": "miher",
+    "password_confirmation": "mhmiher072440",    
     "usu_dir": "alamos",
     "usu_telf": 996041308,
     "profesor_id": "1",
@@ -20,25 +26,25 @@ Content-Type: application/json
     "alumno_id": "1"
 }
 
-###Modificar usuarios
-PATCH http://127.0.0.1:8000/api/v1/user/4
+###Modificar usuarios corregir hacia abajo
+PATCH http://127.0.0.1:8000/api/v1/user/13
 Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Herder Mijail",
-    "usu_dni": 98565432,
-    "email": "miher@mail.com",
-    "email_verified_at": "",
-    "usu_user": "miher",
-    "password": "miher123456",    
+    "name": "Usuario 2",
+    "usu_dni": 44070636,
+    "email": "ruth@mail.com",
+    "usu_user": "ruth",
+    "password": "mhmiher072440",
+    "password_confirmation": "mhmiher072440",    
     "usu_dir": "alamos",
-    "usu_telf": 996041302,
-    "profesor_id": 5,
-    "tipousuario_id": 3,
-    "alumno_id": 1
+    "usu_telf": 996041308,
+    "profesor_id": "1",
+    "tipousuario_id": "3",
+    "alumno_id": "1"
 }
 
 ###Eliminar Usuarios
-DELETE http://127.0.0.1:8000/api/v1/user/5
+DELETE http://127.0.0.1:8000/api/v1/user/12
 Accept: application/json

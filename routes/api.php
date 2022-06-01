@@ -34,6 +34,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post("/v1/user/login", [UserController::class, "login"]);
+Route::post("/v1/user/registro", [UserController::class, "registro"]);
+
+
+
 Route::apiResource("v1/alumno", AlumnoController::class);
 Route::apiResource("v1/anioacademico", AnioacademicoController::class);
 Route::apiResource("v1/apoderado", ApoderadoController::class);
@@ -49,4 +54,4 @@ Route::apiResource("v1/pago", PagoController::class);
 Route::apiResource("v1/profesor", ProfesorController::class);
 Route::apiResource("v1/provincia", ProvinciaController::class);
 Route::apiResource("v1/tipousuario", TipousuarioController::class);
-Route::apiResource("v1/user", UserController::class);
+/* Route::apiResource("v1/user", UserController::class); */
