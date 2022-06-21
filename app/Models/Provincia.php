@@ -9,6 +9,8 @@ class Provincia extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function departamento()
     {
         return $this->belongsTo(Departamento::class);
@@ -16,6 +18,6 @@ class Provincia extends Model
 
     public function distritos()
     {
-        return $this->hasMany(Distritos::class);
+        return $this->hasMany(Distrito::class);
     }
 }

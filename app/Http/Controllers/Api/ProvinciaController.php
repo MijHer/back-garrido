@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Provincia;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 
 class ProvinciaController extends Controller
@@ -15,7 +16,7 @@ class ProvinciaController extends Controller
      */
     public function index()
     {
-        $provincia = Provincia::get();
+        $provincia = Provincia::with('departamento')->paginate();
         return response()->json($provincia, 200);
     }
 

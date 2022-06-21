@@ -8,8 +8,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "prov_nom": "huariaca",
-    "departamento_id": 2
+    "prov_nom": "Daniel Carrion",
+    "departamento_id": 5
 }
 
 ### Modificar provincia
@@ -18,7 +18,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "prov_nom": "Pasco",
+    "prov_nom": "Oxapampa",
     "departamento_id": 2
 }
 

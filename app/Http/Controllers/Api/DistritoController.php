@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Distrito;
+use App\Models\Provincia;
 use Illuminate\Http\Request;
 
 class DistritoController extends Controller

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Grado;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 
 class GradoController extends Controller
@@ -15,7 +16,7 @@ class GradoController extends Controller
      */
     public function index()
     {
-        $grado = Grado::get();
+        $grado = Grado::with('nivel')->get();
         return response()->json($grado, 200);
     }
 
