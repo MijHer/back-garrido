@@ -35,12 +35,6 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('set null');
         });
-        Schema::table('cursos', function (Blueprint $table){
-            $table->unsignedBigInteger('profesor_id')->nullable();
-            $table->foreign('profesor_id')->references('id')->on('profesors')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-        });
         Schema::table('notacursos', function (Blueprint $table){
             $table->unsignedBigInteger('profesor_id')->nullable();
             $table->foreign('profesor_id')->references('id')->on('profesors')
@@ -58,10 +52,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table){
             $table->dropForeign('users_profesor_id_foreign');
-            $table->dropColumn('profesor_id');
-        });
-        Schema::table('cursos', function (Blueprint $table){
-            $table->dropForeign('cursos_profesor_id_foreign');
             $table->dropColumn('profesor_id');
         });
         Schema::table('notacursos', function (Blueprint $table){

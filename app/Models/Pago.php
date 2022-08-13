@@ -11,9 +11,9 @@ class Pago extends Model
 
     protected $guarded = [];
 
-    public function alumnos()
+    public function alumno()
     {
-        return $this->hasMany(Alumno::class);
+        return $this->BelongsTo(Alumno::class);
     }
 
     public function matricula()

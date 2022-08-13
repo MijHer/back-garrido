@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Alumno;
+use App\Models\Apoderado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveAlumnoRequest;
@@ -16,7 +17,7 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumno = Alumno::paginate();
+        $alumno = Alumno::with('apoderado')->paginate();
         return response()->json($alumno, 200);
     }
 
@@ -86,5 +87,12 @@ class AlumnoController extends Controller
             "error" => false
         ], 200);
         
+    }
+
+    public function buscarAlumno(Request $request)
+    {
+        $buscar = $request->q;
+        $alumno = Alumno::orWhere('alu_nmr_doc', 'like', '%'.$buscar.'%')->with('apoderado')->first();
+        return response()->json($alumno, 200);
     }
 }

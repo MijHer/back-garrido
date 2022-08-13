@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "dist_nom": "amarilis",
-    "provincia_id": 1
+    "provincia_id": 2
 }
 
 ### Modificar distrito

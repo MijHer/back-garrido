@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Matricula;
+use App\Models\Alumno;
+use App\Models\Distrito;
+use App\Models\Grado;
+use App\Models\Anioacademico;
+use App\Models\Apoderado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveMatriculaRequest;
@@ -14,9 +19,10 @@ class MatriculaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $matricula = Matricula::get();
+       /*  $buscar=$request->get('buscar'); */
+        $matricula = Matricula::with('alumno', 'distrito', 'grado', 'anioacademico', 'apoderado')->paginate();
         return response()->json($matricula, 200);
     }
 

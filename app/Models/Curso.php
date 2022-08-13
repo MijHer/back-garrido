@@ -16,8 +16,4 @@ class Curso extends Model
         return $this->hasMany(Notacurso::class);
     }
 
-    public function profesors()
-    {
-        return $this->hasMany(Profesor::class);
-    }
 }

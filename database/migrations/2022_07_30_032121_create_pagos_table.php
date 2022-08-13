@@ -21,12 +21,6 @@ return new class extends Migration
             $table->string('pago_periodo');
             $table->timestamps();
         });
-        Schema::table('matriculas', function (Blueprint $table){
-            $table->unsignedBigInteger('pago_id')->nullable();
-            $table->foreign('pago_id')->references('id')->on('pagos')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-        });
     }
 
     /**
@@ -36,10 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('matriculas', function (Blueprint $table){
-            $table->dropForeign('matriculas_pago_id_foreign');
-            $table->dropColumn('pago_id');
-        });
         Schema::dropIfExists('pagos');
     }
 };

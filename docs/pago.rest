@@ -11,6 +11,7 @@ Content-Type: application/json
     "pago_monto": 225,
     "pago_concepto": "pago del mes de marzo",
     "pago_periodo": "abril - mayo",
+    "matricula_id": 3,
     "alumno_id": 2
 }
 

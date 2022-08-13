@@ -17,7 +17,7 @@ class ApoderadoController extends Controller
      */
     public function index()
     {
-        $apoderado = Apoderado::with('alumno')->paginate();
+        $apoderado = Apoderado::paginate();
         return response()->json($apoderado, 200);
     }
 

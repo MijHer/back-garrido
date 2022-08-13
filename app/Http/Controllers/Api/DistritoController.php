@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Distrito;
 use App\Models\Provincia;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 
 class DistritoController extends Controller
@@ -16,7 +17,7 @@ class DistritoController extends Controller
      */
     public function index()
     {
-        $distrito = Distrito::get();
+        $distrito = Distrito::with('provincia', 'departamento')->get();
         return response()->json($distrito, 200);
     }
 

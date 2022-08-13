@@ -28,13 +28,20 @@ class NotacursoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'notas' => 'required',
             'curso_id' => 'required',
+            'nota1' => 'required',
+            'nota2' => 'required',
+            'nota3' => 'required',
+            'nota4' => 'required',
+            'obs' => 'required',
             'profesor_id' => 'required'
         ]);
         $notacurso = new Notacurso();
         $notacurso->curso_id = $request->curso_id;
-        $notacurso->notas = $request->notas;
+        $notacurso->nota1 = $request->nota1;
+        $notacurso->nota2 = $request->nota2;
+        $notacurso->nota3 = $request->nota3;
+        $notacurso->nota4 = $request->nota4;
         $notacurso->obs = $request->obs;
         $notacurso->profesor_id = $request->profesor_id;        
         $notacurso->save();
@@ -72,7 +79,10 @@ class NotacursoController extends Controller
     {
         $notacurso = Notacurso::FindOrFail($id);
         $notacurso->curso_id = $request->curso_id;
-        $notacurso->notas = $request->notas;
+        $notacurso->nota1 = $request->nota1;
+        $notacurso->nota2 = $request->nota2;
+        $notacurso->nota3 = $request->nota3;
+        $notacurso->nota4 = $request->nota4;
         $notacurso->obs = $request->obs;
         $notacurso->profesor_id = $request->profesor_id;       
         $notacurso->save();

@@ -7,24 +7,16 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "mat_cod_modualar": "0211254559",
-    "mat_fecha": "20/07/86",
+    "mat_cod_modular": "2222222",
+    "mat_fecha": "2020-07-8",
     "mat_costo": 152,
     "mat_nivel": "quinto",
-    "mat_turno": "mañana",
-    "mat_sec": "B",
-    "mat_foto": "foto 1",
-    "apo_nom": "Malavara",
-    "apo_app": "Malvin",
-    "apo_apm": "Huertas",
-    "apo_parenteso": "Tio",
-    "apo_telf": 958788856,
-    "apo_dni": 13866521,
-    "pago_id": "3",
-    "grado_id": "3",
-    "distrito_id": "1",
-    "anioacademico_id": "1",
-    "alumno_id": "1"
+    "mat_turno": "mañana",    
+    "grado_id": 1,
+    "distrito_id": 2,
+    "anioacademico_id": 1,
+    "alumno_id": 2,
+    "apoderado_id": 1
 }
 
 ### Actulizar Matricula

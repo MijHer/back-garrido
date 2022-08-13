@@ -15,20 +15,18 @@ return new class extends Migration
     {
         Schema::create('matriculas', function (Blueprint $table) {
             $table->id();
-            $table->string('mat_cod_modualar')->nullable();
-            $table->string('mat_fecha');
+            $table->string('mat_cod_modular')->nullable();
+            $table->dateTime('mat_fecha');
             $table->decimal('mat_costo', 8 ,2);
             $table->string('mat_nivel');
             $table->string('mat_turno');
-            $table->string('mat_sec')->nullable();
-            $table->string('mat_foto')->nullable();
-            $table->string('apo_nom');
-            $table->string('apo_app');
-            $table->string('apo_apm');
-            $table->string('apo_parenteso');
-            $table->integer('apo_telf')->nullable();
-            $table->integer('apo_dni')->unique();
             $table->timestamps();
+        });
+        Schema::table('pagos', function (Blueprint $table) {
+            $table->unsignedBigInteger('matricula_id')->nullable();
+            $table->foreign('matricula_id')->references('id')->on('matriculas')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
         });
     }
 
@@ -39,6 +37,10 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('pagos', function (Blueprint $table) {
+            $table->dropForeign('pagos_matricula_id_foreign');
+            $table->dropColumn('matricula_id');
+        });
         Schema::dropIfExists('matriculas');
     }
 };

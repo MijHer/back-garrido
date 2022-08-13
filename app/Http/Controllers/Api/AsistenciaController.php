@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Asistencia;
+use App\Models\Curso;
+use App\Models\Grado;
 use Illuminate\Http\Request;
 
 class AsistenciaController extends Controller
@@ -15,7 +16,7 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        $asistencia = Asistencia::get();
+        $asistencia = with('curso', 'grado');
         return response()->json($asistencia, 200);
     }
 
@@ -27,21 +28,7 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'alumno_id' => 'required'
-        ]);
-        $asistencia = new Asistencia();
-        $asistencia->falta1 = $request->falta1;
-        $asistencia->falta2 = $request->falta2;
-        $asistencia->tardanza1 = $request->tardanza1;
-        $asistencia->tardanza2 = $request->tardanza2;
-        $asistencia->alumno_id = $request->alumno_id;
-        $asistencia->save();
-        return response()->json([
-            "status" => 1,
-            "mensaje" => "Asistencia Registrada",
-            "error" => false,
-        ], 201);
+        //
     }
 
     /**
@@ -52,12 +39,7 @@ class AsistenciaController extends Controller
      */
     public function show($id)
     {
-        $asistencia = Asistencia::FindOrFail($id);
-        return response()->json([
-            "status" => 1,
-            "data" => $asistencia,
-            "error" => false
-        ]);
+        //
     }
 
     /**
@@ -69,18 +51,7 @@ class AsistenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $asistencia = Asistencia::FindOrFail($id);
-        $asistencia->falta1 = $request->falta1;
-        $asistencia->falta2 = $request->falta2;
-        $asistencia->tardanza1 = $request->tardanza1;
-        $asistencia->tardanza2 = $request->tardanza2;
-        $asistencia->alumno_id = $request->alumno_id;
-        $asistencia->save();
-        return response()->json([
-            "status" => 1,
-            "mensaje" => "Asistencia Actualizada",
-            "error" => false,
-        ], 201);
+        //
     }
 
     /**
@@ -91,12 +62,6 @@ class AsistenciaController extends Controller
      */
     public function destroy($id)
     {
-        $asistencia = Asistencia::FindOrFail($id);
-        $asistencia->delete();
-        return response()->json([
-            "status" => 1,
-            "mensaje" => "Asistencia Eliminada",
-            "error" => false,
-        ], 201);
-    }    
+        //
+    }
 }

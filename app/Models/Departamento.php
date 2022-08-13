@@ -13,4 +13,8 @@ class Departamento extends Model
     {
         return $this->hasMany(Provincia::class);
     }
+    public function distritos()
+    {
+        return $this->hasMany(Distrito::class);
+    }
 }

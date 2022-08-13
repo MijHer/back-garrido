@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "email": "miher@mail.com",
-    "password": "mhmiher072440"
+    "password": "miher"
 }
 
 ###registrar usuario
@@ -14,16 +14,16 @@ Content-Type: application/json
 
 {
     "name": "Usuario 1",
-    "usu_dni": 41070636,
+    "usu_dni": 43741706,
     "email": "miher@mail.com",
     "usu_user": "miher",
     "password": "miher",
-    "password_confirmation": "mhmiher072440",    
+    "password_confirmation": "miher",    
     "usu_dir": "alamos",
     "usu_telf": 996041308,
-    "profesor_id": "1",
-    "tipousuario_id": "3",
-    "alumno_id": "1"
+    "profesor_id": 1,
+    "tipousuario_id": 1,
+    "alumno_id": 1
 }
 
 ###Modificar usuarios corregir hacia abajo

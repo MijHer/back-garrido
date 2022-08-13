@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "prov_nom": "Daniel Carrion",
-    "departamento_id": 5
+    "departamento_id": 1
 }
 
 ### Modificar provincia

@@ -63,19 +63,7 @@ return new class extends Migration
             $table->string('alu_civil_padre');
             $table->timestamps();
         });
-        Schema::table('apoderados', function (Blueprint $table){
-            $table->unsignedBigInteger('alumno_id')->nullable();
-            $table->foreign('alumno_id')->references('id')->on('alumnos')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-        });
         Schema::table('pagos', function (Blueprint $table){
-            $table->unsignedBigInteger('alumno_id')->nullable();
-            $table->foreign('alumno_id')->references('id')->on('alumnos')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-        });
-        Schema::table('asistencias', function (Blueprint $table){
             $table->unsignedBigInteger('alumno_id')->nullable();
             $table->foreign('alumno_id')->references('id')->on('alumnos')
                 ->onUpdate('cascade')
@@ -102,23 +90,15 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('apoderados', function (Blueprint $table){
-            $table->dropForeign('apoderados_alumno_id_foreign');
-            $table->dropColumn('alumno_id');
-        });
         Schema::table('pagos', function (Blueprint $table){
             $table->dropForeign('pagos_alumno_id_foreign');
-            $table->dropColumn('alumno_id');
-        });
-        Schema::table('asistencias', function (Blueprint $table){
-            $table->dropForeign('asistencias_alumno_id_foreign');
             $table->dropColumn('alumno_id');
         });
         Schema::table('matriculas', function (Blueprint $table){
             $table->dropForeign('matriculas_alumno_id_foreign');
             $table->dropColumn('alumno_id');
         });
-        Schema::table('alumnos', function (Blueprint $table){
+        Schema::table('users', function (Blueprint $table){
             $table->dropForeign('users_alumno_id_foreign');
             $table->dropColumn('alumno_id');
         });

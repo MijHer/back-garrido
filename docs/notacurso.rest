@@ -8,8 +8,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "notas": 9,
-    "curso_id": 1,
+    "curso_id": 2,
+    "nota1": 12,
+    "nota2": 13,
+    "nota3": 18,
+    "nota4": 8,    
     "obs": "alumno aplicado",
     "profesor_id": 1
 }

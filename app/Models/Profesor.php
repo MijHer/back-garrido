@@ -16,11 +16,6 @@ class Profesor extends Model
         return $this->hasMany(Notacurso::class);
     }
 
-    public function curso()
-    {
-        return $this->belongsTo(Profesor::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);

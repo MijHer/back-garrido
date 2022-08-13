@@ -7,8 +7,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "anio_nom": "Año de miguel grauc",
-    "anio_detalle": "año de exito"
+    "anio_nom": "Año de miguel andino",
+    "anio_detalle": "año de exitos",
+    "estado": false
 }
 
 ###actualizar registro de año

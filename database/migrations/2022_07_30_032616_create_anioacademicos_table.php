@@ -13,18 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('distritos', function (Blueprint $table) {
+        Schema::create('anioacademicos', function (Blueprint $table) {
             $table->id();
-            $table->string('dist_nom');
+            $table->string('anio_nom');
+            $table->string('anio_detalle')->nullable();
+            $table->boolean("estado")->default(true);
             $table->timestamps();
         });
         Schema::table('matriculas', function (Blueprint $table){
-            $table->unsignedBigInteger('distrito_id')->nullable();
-            $table->foreign('distrito_id')->references('id')->on('distritos')
+            $table->unsignedBigInteger('anioacademico_id')->nullable();
+            $table->foreign('anioacademico_id')->references('id')->on('anioacademicos')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
         });
-
     }
 
     /**
@@ -35,9 +36,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('matriculas', function (Blueprint $table){
-            $table->dropForeign('matriculas_distrito_id_foreign');
-            $table->dropColumn('distrito_id');
+            $table->dropForeign('matriculas_anioacademico_id_foreign');
+            $table->dropColumn('anioacademico_id');
         });
-        Schema::dropIfExists('distritos');
+        Schema::dropIfExists('anioacademicos');
     }
 };

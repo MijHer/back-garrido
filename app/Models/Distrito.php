@@ -14,6 +14,11 @@ class Distrito extends Model
         return $this->belongsTo(Provincia::class);
     }
 
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class);
+    }
+
     public function matriculas()
     {
         return $this->hasMany(Matricula::class);

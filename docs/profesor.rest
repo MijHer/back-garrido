@@ -8,13 +8,13 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "pro_nom": "losivnnv",
-    "pro_app": "Berdfdfrospi",
-    "pro_apm": "Calddfdferon",
+    "pro_nom": "karl",
+    "pro_app": "Sustatino",
+    "pro_apm": "calderon",
     "pro_dire": "Jr los pinos",
     "pro_telf": "985563365",
-    "pro_sexo": "cabro",
-    "pro_dni": "45854767",
+    "pro_sexo": "masculino",
+    "pro_dni": 25658741,
     "pro_grado_instruccion": "superior",
     "pro_especialidad": "matematias",
     "pro_pais": "peru",
@@ -34,7 +34,7 @@ Content-Type: application/json
     "pro_dire": "Jr los pinos",
     "pro_telf": "985563365",
     "pro_sexo": "masculino",
-    "pro_dni": "45847867",
+    "pro_dni": 45847867,
     "pro_grado_instruccion": "superior",
     "pro_especialidad": "matematias",
     "pro_pais": "peru",

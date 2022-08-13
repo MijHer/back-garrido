@@ -8,9 +8,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "tipo_nom": "Miher02",
-    "tipo_descripcion": "Director",
-    "estado": "activo"
+    "tipo_nom": "Miher",
+    "tipo_descripcion": "ADMIN",
+    "estado": true
 }
 
 ### Modificar tipousuario

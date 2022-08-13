@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asistencias', function (Blueprint $table) {
+        Schema::create('notacursos', function (Blueprint $table) {
             $table->id();
-            $table->string('falta1')->nullable();
-            $table->string('falta2')->nullable();
-            $table->string('tardanza1')->nullable();
-            $table->string('tardanza2')->nullable();
+            $table->decimal('nota1', 10, 2);
+            $table->decimal('nota2', 10, 2);
+            $table->decimal('nota3', 10, 2);
+            $table->decimal('nota4', 10, 2);
+            $table->string('obs');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asistencias');
+        Schema::dropIfExists('notacursos');
     }
 };

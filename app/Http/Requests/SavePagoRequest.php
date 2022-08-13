@@ -28,6 +28,7 @@ class SavePagoRequest extends FormRequest
             'pago_monto' => 'required',
             'pago_concepto' => 'required',
             'pago_periodo' => 'required',
+            'matricula_id' => 'required',
             'alumno_id' => 'required'
         ];
     }

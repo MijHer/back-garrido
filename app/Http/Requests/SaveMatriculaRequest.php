@@ -24,24 +24,18 @@ class SaveMatriculaRequest extends FormRequest
     public function rules()
     {
         return [
-            'mat_cod_modualar' => 'nullable',
+            'mat_cod_modular' => 'nullable|max:7',
             'mat_fecha' => 'required',
             'mat_costo' => 'required',
             'mat_nivel' => 'required',
             'mat_turno' => 'required',
             'mat_sec' => 'nullable',
-            'mat_foto' => 'nullable',
-            'apo_nom' => 'required',
-            'apo_app' => 'required',
-            'apo_apm' => 'required',
-            'apo_parenteso' => 'required',
-            'apo_telf' => 'nullable',
-            'apo_dni' => 'required|max:8',
-            'pago_id' => 'required',
+            'mat_foto' => 'nullable',            
             'grado_id' => 'required',
             'distrito_id' => 'required',
             'anioacademico_id' => 'required',
-            'alumno_id' => 'required'
+            'alumno_id' => 'required',
+            'apoderado_id' => 'required'
         ];
     }
 }

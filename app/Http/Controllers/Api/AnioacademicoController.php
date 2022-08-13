@@ -33,6 +33,7 @@ class AnioacademicoController extends Controller
         $anioacademico = new Anioacademico();
         $anioacademico->anio_nom = $request->anio_nom;
         $anioacademico->anio_detalle = $request->anio_detalle;
+        $anioacademico->estado = $request->estado;
         $anioacademico->save();
         return response()->json([
             "status" => 1,
@@ -69,6 +70,7 @@ class AnioacademicoController extends Controller
         $anioacademico = Anioacademico::FindOrFail($id);
         $anioacademico->anio_nom = $request->anio_nom;
         $anioacademico->anio_detalle = $request->anio_detalle;
+        $anioacademico->estado = $request->estado;
         $anioacademico->save();
         return response()->json([
             "status" => 1,

@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notacursos', function (Blueprint $table) {
+        Schema::create('alumno_notacurso', function (Blueprint $table) {
             $table->id();
-            $table->decimal('notas', 10, 2);
-            $table->string('obs');
+            $table->bigInteger("alumno_id")->unsigned();
+            $table->bigInteger("notacurso_id")->unsigned();
+
+            $table->foreign("alumno_id")->references("id")->on("alumnos");
+            $table->foreign("notacurso_id")->references("id")->on("notacursos");
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notacursos');
+        Schema::dropIfExists('alumno_notacurso');
     }
 };

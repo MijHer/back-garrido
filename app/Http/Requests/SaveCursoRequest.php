@@ -27,8 +27,6 @@ class SaveCursoRequest extends FormRequest
             'cur_nom' => 'required',
             'cur_descripcion' => 'nullable',
             'cur_grado' => 'required',
-            'cur_anio' => 'required',
-            'profesor_id' => 'required'
         ];
     }
 }

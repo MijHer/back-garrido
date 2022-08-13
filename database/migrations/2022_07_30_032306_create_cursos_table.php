@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('cur_nom');
             $table->string('cur_descripcion')->nullable();
             $table->string('cur_grado');
-            $table->string('cur_anio');
             $table->timestamps();
-        });        
+        });
         Schema::table('notacursos', function (Blueprint $table){
             $table->unsignedBigInteger('curso_id')->nullable()->after('id');
             $table->foreign('curso_id')->references('id')->on('cursos')
@@ -35,7 +34,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {        
+    {
         Schema::table('notacursos', function (Blueprint $table){
             $table->dropForeign('notacursos_curso_id_foreign');
             $table->dropColumn('curso_id');

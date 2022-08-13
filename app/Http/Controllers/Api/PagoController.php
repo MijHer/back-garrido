@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Pago;
+use App\Models\Alumno;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SavePagoRequest;
@@ -16,7 +17,7 @@ class PagoController extends Controller
      */
     public function index()
     {
-        $pago = Pago::get();
+        $pago = Pago::with('alumno')->get();
         return response()->json($pago, 200);
     }
 

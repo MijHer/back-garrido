@@ -11,9 +11,9 @@ class Matricula extends Model
 
     protected $guarded = [];
 
-    public function alumnos()
+    public function alumno()
     {
-        return $this->hasMany(Alumno::class);
+        return $this->belongsTo(Alumno::class);
     }
     public function anioacademico()
     {
@@ -32,6 +32,11 @@ class Matricula extends Model
 
     public function pagos()
     {
-        return $this->hasMany(Pago::class);
+        return $this->hasMany(Pago::class);    
+    }
+    
+    public function apoderado()
+    {
+        return $this->belongsTo(Apoderado::class);
     }
 }

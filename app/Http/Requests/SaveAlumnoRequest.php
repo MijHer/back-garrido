@@ -69,7 +69,8 @@ class SaveAlumnoRequest extends FormRequest
             'alu_grado_inst_padre' => 'nullable',
             'alu_ocupacion_padre' => 'required',
             'alu_religion_padre' => 'nullable',
-            'alu_civil_padre' => 'required'
+            'alu_civil_padre' => 'required',
+            'apoderado_id' => 'required'
         ];
     }
 }
