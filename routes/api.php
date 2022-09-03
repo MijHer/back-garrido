@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AlumnoController;
 use App\Http\Controllers\Api\AnioacademicoController;
 use App\Http\Controllers\Api\ApoderadoController;
+use App\Http\Controllers\Api\AsignacionController;
 use App\Http\Controllers\Api\AsistenciaController;
 use App\Http\Controllers\Api\CursoController;
 use App\Http\Controllers\Api\DepartamentoController;
@@ -18,7 +19,6 @@ use App\Http\Controllers\Api\ProfesorController;
 use App\Http\Controllers\Api\ProvinciaController;
 use App\Http\Controllers\Api\TipousuarioController;
 use App\Http\Controllers\Api\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,9 +33,15 @@ use App\Http\Controllers\Api\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+/* Route::middleware(['auth', 'second'])->group(function () {
+    
+}); */
 Route::post("/v1/user/login", [UserController::class, "login"]);
+Route::get("/v1/user/index", [UserController::class, "index"]);
 Route::post("/v1/user/registro", [UserController::class, "registro"]);
+Route::get("/v1/user/show", [UserController::class, "show"]);
+Route::patch("/v1/user/update/{id}", [UserController::class, "update"]);
+Route::delete("/v1/user/destroy/{id}", [UserController::class, "destroy"]);
 
 Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
 
@@ -54,4 +60,4 @@ Route::apiResource("v1/pago", PagoController::class);
 Route::apiResource("v1/profesor", ProfesorController::class);
 Route::apiResource("v1/provincia", ProvinciaController::class);
 Route::apiResource("v1/tipousuario", TipousuarioController::class);
-/* Route::apiResource("v1/user", UserController::class); */
+Route::apiResource("v1/asignacion", AsignacionController::class);

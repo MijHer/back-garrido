@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Grado;
-use App\Models\Nivel;
 use Illuminate\Http\Request;
 
 class GradoController extends Controller
@@ -16,7 +15,7 @@ class GradoController extends Controller
      */
     public function index()
     {
-        $grado = Grado::with('nivel')->get();
+        $grado = Grado::all();
         return response()->json($grado, 200);
     }
 
@@ -30,12 +29,17 @@ class GradoController extends Controller
     {
         $request->validate([
             'gra_nom' => 'required',
-            'nivel_id' => 'required'
+            'gra_seccion' => 'required',
+            'gra_nivel' => 'required',
+            'gra_registro' => 'required',
+            'gra_estado' => 'required'
         ]);
         $grado = new Grado();
         $grado->gra_nom = $request->gra_nom;
-        $grado->gra_detalle = $request->gra_detalle;
-        $grado->nivel_id = $request->nivel_id;
+        $grado->gra_seccion = $request->gra_seccion;
+        $grado->gra_nivel = $request->gra_nivel;
+        $grado->gra_registro = $request->gra_registro;
+        $grado->gra_estado = $request->gra_estado;      
         $grado->save();
         return response()->json([
             "status" => 1,
@@ -71,8 +75,10 @@ class GradoController extends Controller
     {
         $grado = Grado::FindOrFail($id);
         $grado->gra_nom = $request->gra_nom;
-        $grado->gra_detalle = $request->gra_detalle;
-        $grado->nivel_id = $request->nivel_id;
+        $grado->gra_seccion = $request->gra_seccion;
+        $grado->gra_nivel = $request->gra_nivel;
+        $grado->gra_registro = $request->gra_registro;
+        $grado->gra_estado = $request->gra_estado; 
         $grado->save();
         return response()->json([
             "status" => 1,

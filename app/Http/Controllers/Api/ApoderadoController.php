@@ -32,7 +32,7 @@ class ApoderadoController extends Controller
         Apoderado::create($request->validated());
         return response()->json([
             "status" => 1,
-            "mendaje" => "Apoderado REgistrado",
+            "mendaje" => "Apoderado Registrado",
             "error" => false
         ], 201);
 

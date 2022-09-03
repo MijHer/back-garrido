@@ -8,9 +8,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "gra_nom": "tercero",
-    "gra_detalle": "solo alfas",
-    "nivel_id": 1
+    "gra_nom": "segundo",
+    "gra_seccion": "solo alfas",
+    "gra_nivel": "quitno",
+    "gra_registro": "2022-12-01",
+    "gra_estado": 1
 }
 
 ### Modificar grado

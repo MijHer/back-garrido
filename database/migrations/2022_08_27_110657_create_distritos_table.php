@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('grados', function (Blueprint $table) {
+        Schema::create('distritos', function (Blueprint $table) {
             $table->id();
-            $table->string('gra_nom');
-            $table->string('gra_detalle')->nullable();
+            $table->string('dist_nom');
+            $table->date('dist_rgst');
             $table->timestamps();
         });
         Schema::table('matriculas', function (Blueprint $table){
-            $table->unsignedBigInteger('grado_id')->nullable();
-            $table->foreign('grado_id')->references('id')->on('grados')
+            $table->unsignedBigInteger('distrito_id')->nullable();
+            $table->foreign('distrito_id')->references('id')->on('distritos')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
         });
@@ -35,9 +35,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('matriculas', function (Blueprint $table){
-            $table->dropForeign('matriculas_grado_id_foreign');
-            $table->dropColumn('grado_id');
+            $table->dropForeign('matriculas_distrito_id_foreign');
+            $table->dropColumn('distrito_id');
         });
-        Schema::dropIfExists('grados');
+        Schema::dropIfExists('distritos');
     }
 };

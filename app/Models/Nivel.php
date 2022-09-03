@@ -9,8 +9,4 @@ class Nivel extends Model
 {
     use HasFactory;
 
-    public function grados()
-    {
-        return $this->hasMany(Grado::class);
-    }
 }

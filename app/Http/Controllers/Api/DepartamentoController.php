@@ -32,6 +32,7 @@ class DepartamentoController extends Controller
         ]);
         $departamento = new Departamento();
         $departamento->depa_nom = $request->depa_nom;
+        $departamento->dape_rgst = $request->dape_rgst;
         $departamento->save();
         return response()->json([
             "status" => 1,
@@ -67,6 +68,7 @@ class DepartamentoController extends Controller
     {
         $departamento = Departamento::FindOrFail($id);
         $departamento->depa_nom = $request->depa_nom;
+        $departamento->dape_rgst = $request->dape_rgst;
         $departamento->save();
         return response()->json([
             "status" => 1,

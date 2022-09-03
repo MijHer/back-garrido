@@ -8,7 +8,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "depa_nom": "lauricocha"    
+    "depa_nom": "lauricocha",
+    "dape_rgst": "2021-12-12"
 }
 
 ### Modificar Departamento

@@ -32,7 +32,8 @@ class SaveApoderadoRequest extends FormRequest
             'apo_dir' => 'required',
             'apo_fnac' => 'required',
             'apo_vinculo' => 'required',
-            'apo_grado_inst' => 'nullable'            
+            'apo_grado_inst' => 'nullable',
+            'apo_estado' => 'required'
         ];
     }
 }

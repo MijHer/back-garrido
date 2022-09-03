@@ -9,9 +9,11 @@ class Distrito extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function provincia()
     {
-        return $this->belongsTo(Provincia::class);
+        return $this->belongsTo(Provincia::class)->with('departamento');
     }
 
     public function departamento()

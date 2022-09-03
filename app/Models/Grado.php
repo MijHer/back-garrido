@@ -8,12 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Grado extends Model
 {
     use HasFactory;
-
-    public function nivel()
-    {
-        return $this->belongsTo(Nivel::class);
-    }
-
+    
+    protected $guarded = [];
+    
     public function matriculas()
     {
         return $this->hasMany(Matricula::class);

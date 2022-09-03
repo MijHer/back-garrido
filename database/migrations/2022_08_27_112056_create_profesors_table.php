@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('pro_apm');
             $table->string('pro_dire')->nullable();
             $table->integer('pro_telf');
+            $table->string('pro_correo');
             $table->string('pro_sexo')->nullable();
             $table->integer('pro_dni')->unique();
             $table->string('pro_grado_instruccion');
@@ -27,19 +28,8 @@ return new class extends Migration
             $table->string('pro_pais')->nullable();
             $table->string('pro_fnac')->nullable();
             $table->string('pro_distrito');
+            $table->boolean('pro_estado');
             $table->timestamps();
-        });
-        Schema::table('users', function (Blueprint $table){
-            $table->unsignedBigInteger('profesor_id')->nullable();
-            $table->foreign('profesor_id')->references('id')->on('profesors')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-        });
-        Schema::table('notacursos', function (Blueprint $table){
-            $table->unsignedBigInteger('profesor_id')->nullable();
-            $table->foreign('profesor_id')->references('id')->on('profesors')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
         });
     }
 
@@ -50,14 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table){
-            $table->dropForeign('users_profesor_id_foreign');
-            $table->dropColumn('profesor_id');
-        });
-        Schema::table('notacursos', function (Blueprint $table){
-            $table->dropForeign('notacursos_profesor_id_foreign');
-            $table->dropColumn('profesor_id');
-        });
         Schema::dropIfExists('profesors');
     }
 };

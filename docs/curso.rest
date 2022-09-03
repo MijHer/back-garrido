@@ -9,9 +9,8 @@ Content-Type: application/json
 {
     "cur_nom": "Fisica Moderna",
     "cur_descripcion": "Fisica primaria",
-    "cur_grado": "quinto - sexto",
-    "cur_anio": 2022,
-    "profesor_id": 1
+    "cur_estado": 1,
+    "cur_registro": "2022-12-31"    
 }
 
 ### Modificar cursos

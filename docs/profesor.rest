@@ -8,18 +8,21 @@ Accept: application/json
 Content-Type: application/json
 
 {
+    "user_id": 1,
     "pro_nom": "karl",
     "pro_app": "Sustatino",
     "pro_apm": "calderon",
     "pro_dire": "Jr los pinos",
     "pro_telf": "985563365",
+    "pro_correo": "profersor@mail.com",
     "pro_sexo": "masculino",
     "pro_dni": 25658741,
     "pro_grado_instruccion": "superior",
     "pro_especialidad": "matematias",
     "pro_pais": "peru",
     "pro_fnac": "21/02/89",
-    "pro_distrito": "huanuco"
+    "pro_distrito": "huanuco",
+    "pro_estado": 1
 }
 
 ### Modificar profesor

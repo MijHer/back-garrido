@@ -9,7 +9,9 @@ Content-Type: application/json
 {
     "anio_nom": "Año de miguel andino",
     "anio_detalle": "año de exitos",
-    "estado": false
+    "anio_inicio": "2021-01-01",
+    "anio_fin": "2022-12-12",
+    "anio_estado": 1
 }
 
 ###actualizar registro de año

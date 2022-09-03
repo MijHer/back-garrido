@@ -17,7 +17,7 @@ class DistritoController extends Controller
      */
     public function index()
     {
-        $distrito = Distrito::with('provincia', 'departamento')->get();
+        $distrito = Distrito::with('provincia')->get();
         return response()->json($distrito, 200);
     }
 
@@ -35,7 +35,8 @@ class DistritoController extends Controller
         ]);
         $distrito = new Distrito();
         $distrito->dist_nom = $request->dist_nom;
-        $distrito->provincia_id = $request->provincia_id;
+        $distrito->dist_rgst = $request->dist_rgst;
+        $distrito->provincia_id = $request->provincia_id;        
         $distrito->save();
         return response()->json([
             "status" => 1,
@@ -71,6 +72,7 @@ class DistritoController extends Controller
     {
         $distrito = Distrito::FindOrFail($id);
         $distrito->dist_nom = $request->dist_nom;
+        $distrito->dist_rgst = $request->dist_rgst;
         $distrito->provincia_id = $request->provincia_id;
         $distrito->save();
         return response()->json([

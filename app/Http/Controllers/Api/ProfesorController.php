@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveProfesorRequest;
 use App\Models\Profesor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfesorController extends Controller
@@ -85,5 +86,11 @@ class ProfesorController extends Controller
             "mensaje" => "Profesor elimindado",
             "error" => false
         ], 200);
+    }
+    public function buscarProfesor(Request $request)
+    {
+        $buscara = $request->p;
+        $profesor = Profesor::orWhere('pro_dni', 'like', '%'.$buscara.'%')->first();
+        return response()->json($profesor, 200);
     }
 }

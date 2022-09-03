@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('anio_nom');
             $table->string('anio_detalle')->nullable();
-            $table->boolean("estado")->default(true);
+            $table->date('anio_inicio');
+            $table->date('anio_fin');
+            $table->boolean("anio_estado");
             $table->timestamps();
         });
-        Schema::table('matriculas', function (Blueprint $table){
-            $table->unsignedBigInteger('anioacademico_id')->nullable();
+        Schema::table('matriculas', function (Blueprint $table) {
+            $table->unsignedBigInteger('anioacademico_id')->after('id')->nullable();
             $table->foreign('anioacademico_id')->references('id')->on('anioacademicos')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
@@ -35,7 +37,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('matriculas', function (Blueprint $table){
+        Schema::table('matriculas', function (Blueprint $table) {
             $table->dropForeign('matriculas_anioacademico_id_foreign');
             $table->dropColumn('anioacademico_id');
         });

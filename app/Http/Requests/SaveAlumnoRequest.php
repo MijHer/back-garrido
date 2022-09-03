@@ -24,6 +24,7 @@ class SaveAlumnoRequest extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => 'nullable',
             'alu_foto' => 'nullable',
             'alu_nom' => 'required',
             'alu_app' => 'required',
@@ -42,9 +43,7 @@ class SaveAlumnoRequest extends FormRequest
             'alu_lugar_ocupa' => 'required',
             'alu_sexo' => 'required',
             'alu_lengua_materna' => 'required',
-            'alu_lengua_materna2' => 'nullable',
             'alu_tipo_sangre' => 'nullable',
-            'alu_nacimiento_registrado' => 'nullable',
             'alu_religion' => 'nullable',
             'alu_nom_madre' => 'required',
             'alu_app_madre' => 'required',
@@ -54,7 +53,7 @@ class SaveAlumnoRequest extends FormRequest
             'alu_civil_madre' => 'required',
             'alu_vive_madre' => 'required',
             'alu_fnca_madre' => 'nullable',
-            'alu_vive_con_este_madre' => 'required',
+            'alu_vive_con_madre' => 'required',
             'alu_grado_inst_madre' => 'nullable',
             'alu_ocupacion_madre' => 'required',
             'alu_religion_madre' => 'required',
@@ -65,7 +64,7 @@ class SaveAlumnoRequest extends FormRequest
             'alu_dni_padre' => 'required|max:8',
             'alu_vive_padre' => 'required',
             'alu_fnca_padre' => 'nullable',
-            'alu_vive_con_este_padre' => 'required',
+            'alu_vive_con_padre' => 'required',
             'alu_grado_inst_padre' => 'nullable',
             'alu_ocupacion_padre' => 'required',
             'alu_religion_padre' => 'nullable',

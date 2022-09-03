@@ -26,9 +26,8 @@ class User extends Authenticatable
         'usu_user',
         'usu_dir',
         'usu_telf',
-        'profesor_id',
+        'usu_rgst',
         'tipousuario_id',
-        'alumno_id'
     ];    
 
     /**
@@ -52,12 +51,12 @@ class User extends Authenticatable
 
     public function profesor()
     {
-        return $this->belongsTo(Profesor::class);
+        return $this->hasOne(Profesor::class);
     }
 
-    public function tipousuarios()
+    public function tipousuario()
     {
-        return $this->hasMany(Tipousuario::class);
+        return $this->belongsTo(Tipousuario::class);
     }
 
     public function alumno()

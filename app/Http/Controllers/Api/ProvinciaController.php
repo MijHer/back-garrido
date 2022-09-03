@@ -30,10 +30,12 @@ class ProvinciaController extends Controller
     {
         $request->validate([
             'prov_nom' => 'required',
+            'prov_rgst' => 'required',
             'departamento_id' => 'required'
         ]);
         $provincia = new Provincia();
         $provincia->prov_nom = $request->prov_nom;
+        $provincia->prov_rgst = $request->prov_rgst;
         $provincia->departamento_id = $request->departamento_id;
         $provincia->save();
         return response()->json([
@@ -70,6 +72,7 @@ class ProvinciaController extends Controller
     {
         $provincia = Provincia::FindOrFail($id);
         $provincia->prov_nom = $request->prov_nom;
+        $provincia->prov_rgst = $request->prov_rgst;
         $provincia->departamento_id = $request->departamento_id;
         $provincia->save();
         return response()->json([

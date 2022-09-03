@@ -28,22 +28,22 @@ class NotacursoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'alumno_id' => 'required',
             'curso_id' => 'required',
-            'nota1' => 'required',
-            'nota2' => 'required',
-            'nota3' => 'required',
-            'nota4' => 'required',
-            'obs' => 'required',
-            'profesor_id' => 'required'
+            'profesor_id' => 'required',
+            'anioacademico_id' => 'required',            
+            'obs' => 'required',            
         ]);
         $notacurso = new Notacurso();
+        $notacurso->alumno_id = $request->alumno_id;
         $notacurso->curso_id = $request->curso_id;
+        $notacurso->profesor_id = $request->profesor_id;
+        $notacurso->anoacademico_id = $request->anoacademico_id;
         $notacurso->nota1 = $request->nota1;
         $notacurso->nota2 = $request->nota2;
         $notacurso->nota3 = $request->nota3;
         $notacurso->nota4 = $request->nota4;
         $notacurso->obs = $request->obs;
-        $notacurso->profesor_id = $request->profesor_id;        
         $notacurso->save();
         return response()->json([
             "status" => 1,
@@ -78,13 +78,15 @@ class NotacursoController extends Controller
     public function update(Request $request, $id)
     {
         $notacurso = Notacurso::FindOrFail($id);
+        $notacurso->alumno_id = $request->alumno_id;
         $notacurso->curso_id = $request->curso_id;
+        $notacurso->profesor_id = $request->profesor_id;
+        $notacurso->anoacademico_id = $request->anoacademico_id;
         $notacurso->nota1 = $request->nota1;
         $notacurso->nota2 = $request->nota2;
         $notacurso->nota3 = $request->nota3;
         $notacurso->nota4 = $request->nota4;
-        $notacurso->obs = $request->obs;
-        $notacurso->profesor_id = $request->profesor_id;       
+        $notacurso->obs = $request->obs;     
         $notacurso->save();
         return response()->json([
             "status" => 1,

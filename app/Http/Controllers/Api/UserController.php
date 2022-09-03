@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\Profesor;
+use App\Models\Tipousuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -54,6 +56,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        $user = User::with('tipousuario')->get();
+        return response()->json($user, 200);
+    }
+    
     public function registro(Request $request)
     {   
         $request->validate([
@@ -64,9 +72,8 @@ class UserController extends Controller
             'password' => 'required|min:4',
             'usu_dir' => 'required',
             'usu_telf' => 'required|max:9',
-            'profesor_id' => 'required',
-            'tipousuario_id' => 'required',
-            'alumno_id' => 'required'
+            'usu_rgst' => 'required',
+            'tipousuario_id' => 'required'
         ]);
         $user = new User();
         $user->name = $request->name;
@@ -76,9 +83,8 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->usu_dir = $request->usu_dir;
         $user->usu_telf = $request->usu_telf;
-        $user->profesor_id = $request->profesor_id;
+        $user->usu_rgst = $request->usu_rgst;
         $user->tipousuario_id = $request->tipousuario_id;
-        $user->alumno_id = $request->alumno_id;
         $user->save();
         
         return response()->json([
@@ -113,17 +119,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::FindOrFail($id);
         $user->name = $request->name;
         $user->usu_dni = $request->usu_dni;
         $user->email  = $request->email;
         $user->usu_user = $request->usu_user;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->usu_dir = $request->usu_dir;
         $user->usu_telf = $request->usu_telf;
-        $user->profesor_id = $request->profesor_id;
+        $user->usu_rgst = $request->usu_rgst;
         $user->tipousuario_id = $request->tipousuario_id;
-        $user->alumno_id = $request->alumno_id;
         $user->save();
         return response()->json([
             "status" => 1,

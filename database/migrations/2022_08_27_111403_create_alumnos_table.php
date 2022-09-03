@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('alu_nom');
             $table->string('alu_app');
             $table->string('alu_apm');
-            $table->string('alu_fnac');
+            $table->date('alu_fnac');
             $table->string('alu_tipo_doc');
             $table->integer('alu_nmr_doc')->unique();
             $table->string('alu_grado');
@@ -33,9 +33,7 @@ return new class extends Migration
             $table->string('alu_lugar_ocupa');
             $table->string('alu_sexo');
             $table->string('alu_lengua_materna');
-            $table->string('alu_lengua_materna2')->nullable();
             $table->string('alu_tipo_sangre')->nullable();
-            $table->string('alu_nacimiento_registrado')->nullable();
             $table->string('alu_religion')->nullable();
             $table->string('alu_nom_madre');
             $table->string('alu_app_madre');
@@ -45,7 +43,7 @@ return new class extends Migration
             $table->string('alu_civil_madre');
             $table->string('alu_vive_madre');
             $table->string('alu_fnca_madre')->nullable();
-            $table->string('alu_vive_con_este_madre');
+            $table->string('alu_vive_con_madre');
             $table->string('alu_grado_inst_madre')->nullable();
             $table->string('alu_ocupacion_madre');
             $table->string('alu_religion_madre');
@@ -56,26 +54,20 @@ return new class extends Migration
             $table->integer('alu_dni_padre')->unique();
             $table->string('alu_vive_padre');
             $table->string('alu_fnca_padre')->nullable();
-            $table->string('alu_vive_con_este_padre');
+            $table->string('alu_vive_con_padre');
             $table->string('alu_grado_inst_padre')->nullable();
             $table->string('alu_ocupacion_padre');
             $table->string('alu_religion_padre')->nullable();
             $table->string('alu_civil_padre');
             $table->timestamps();
         });
-        Schema::table('pagos', function (Blueprint $table){
-            $table->unsignedBigInteger('alumno_id')->nullable();
+        Schema::table('matriculas', function (Blueprint $table) {
+            $table->unsignedBigInteger('alumno_id')->after('id')->nullable();
             $table->foreign('alumno_id')->references('id')->on('alumnos')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
         });
-        Schema::table('matriculas', function (Blueprint $table){
-            $table->unsignedBigInteger('alumno_id')->nullable();
-            $table->foreign('alumno_id')->references('id')->on('alumnos')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-        });
-        Schema::table('users', function (Blueprint $table){
+        Schema::table('pagos', function (Blueprint $table) {
             $table->unsignedBigInteger('alumno_id')->nullable();
             $table->foreign('alumno_id')->references('id')->on('alumnos')
                 ->onUpdate('cascade')
@@ -90,16 +82,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('pagos', function (Blueprint $table){
-            $table->dropForeign('pagos_alumno_id_foreign');
-            $table->dropColumn('alumno_id');
-        });
-        Schema::table('matriculas', function (Blueprint $table){
+        Schema::table('matriculas', function (Blueprint $table) {
             $table->dropForeign('matriculas_alumno_id_foreign');
             $table->dropColumn('alumno_id');
         });
-        Schema::table('users', function (Blueprint $table){
-            $table->dropForeign('users_alumno_id_foreign');
+        Schema::table('pagos', function (Blueprint $table) {
+            $table->dropForeign('pagos_alumno_id_foreign');
             $table->dropColumn('alumno_id');
         });
         Schema::dropIfExists('alumnos');

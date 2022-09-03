@@ -1,0 +1,14 @@
+GET http://127.0.0.1:8000/api/v1/asignacion/
+Accept: application/json
+
+### Registrar asignacion de cursos
+POST http://127.0.0.1:8000/api/v1/asignacion/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "curso_id": "1",
+    "profesor_id": "1",
+    "grado_id": "1",
+    "anioacademico": "1"
+}

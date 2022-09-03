@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->string('pago_fecha');
-            $table->decimal('pago_monto', 8, 2);
-            $table->string('pago_concepto');
-            $table->string('pago_periodo');
+            $table->string('cur_nom');
+            $table->string('cur_descripcion')->nullable();
+            $table->boolean('cur_estado');
+            $table->date('cur_registro');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('cursos');
     }
 };

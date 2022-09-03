@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "email": "miher@mail.com",
-    "password": "miher"
+    "password": "1234"
 }
 
 ###registrar usuario
@@ -13,36 +13,34 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Usuario 1",
+    "name": "Usuario 2",
+    "usu_dni": 43741116,
+    "email": "mihe@mail.com",
+    "usu_user": "miher",
+    "password": "1234",
+    "password_confirmation": "miher",    
+    "usu_dir": "alamos",
+    "usu_telf": 957533395,
+    "usu_rgst": "2020-07-8",
+    "tipousuario_id": 1
+}
+
+###Modificar usuarios corregir hacia abajo
+PATCH http://127.0.0.1:8000/api/v1/user/update/2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Usuario 3",
     "usu_dni": 43741706,
     "email": "miher@mail.com",
     "usu_user": "miher",
     "password": "miher",
     "password_confirmation": "miher",    
     "usu_dir": "alamos",
-    "usu_telf": 996041308,
-    "profesor_id": 1,
-    "tipousuario_id": 1,
-    "alumno_id": 1
-}
-
-###Modificar usuarios corregir hacia abajo
-PATCH http://127.0.0.1:8000/api/v1/user/13
-Accept: application/json
-Content-Type: application/json
-
-{
-    "name": "Usuario 2",
-    "usu_dni": 44070636,
-    "email": "ruth@mail.com",
-    "usu_user": "ruth",
-    "password": "mhmiher072440",
-    "password_confirmation": "mhmiher072440",    
-    "usu_dir": "alamos",
-    "usu_telf": 996041308,
-    "profesor_id": "1",
-    "tipousuario_id": "3",
-    "alumno_id": "1"
+    "usu_telf": 957533395,
+    "usu_rgst": "2020-07-8",
+    "tipousuario_id": 1
 }
 
 ###Eliminar Usuarios

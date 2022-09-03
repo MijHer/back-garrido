@@ -26,7 +26,8 @@ class SaveCursoRequest extends FormRequest
         return [
             'cur_nom' => 'required',
             'cur_descripcion' => 'nullable',
-            'cur_grado' => 'required',
+            'cur_estado' => 'required',
+            'cur_registro' => 'required'
         ];
     }
 }

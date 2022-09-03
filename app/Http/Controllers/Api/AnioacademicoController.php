@@ -28,12 +28,17 @@ class AnioacademicoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'anio_nom' => 'required'            
+            'anio_nom' => 'required',
+            'anio_inicio' => 'required',
+            'anio_fin' => 'required',
+            'anio_estado' => 'required'  
         ]);
         $anioacademico = new Anioacademico();
         $anioacademico->anio_nom = $request->anio_nom;
         $anioacademico->anio_detalle = $request->anio_detalle;
-        $anioacademico->estado = $request->estado;
+        $anioacademico->anio_inicio = $request->anio_inicio;
+        $anioacademico->anio_fin = $request->anio_fin;
+        $anioacademico->anio_estado = $request->anio_estado;
         $anioacademico->save();
         return response()->json([
             "status" => 1,
@@ -70,7 +75,9 @@ class AnioacademicoController extends Controller
         $anioacademico = Anioacademico::FindOrFail($id);
         $anioacademico->anio_nom = $request->anio_nom;
         $anioacademico->anio_detalle = $request->anio_detalle;
-        $anioacademico->estado = $request->estado;
+        $anioacademico->anio_inicio = $request->anio_inicio;
+        $anioacademico->anio_fin = $request->anio_fin;
+        $anioacademico->anio_estado = $request->anio_estado;
         $anioacademico->save();
         return response()->json([
             "status" => 1,

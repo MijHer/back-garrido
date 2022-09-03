@@ -15,7 +15,8 @@ Content-Type: application/json
     "apo_dir": "PInos",
     "apo_fnac": "15/12/59",
     "apo_vinculo": "Abuelo",
-    "apo_grado_inst": "Superior"
+    "apo_grado_inst": "Superior",
+    "apo_estado": 1
 }
 ### para modificar datos de apoderado
 PATCH http://127.0.0.1:8000/api/v1/apoderado/1

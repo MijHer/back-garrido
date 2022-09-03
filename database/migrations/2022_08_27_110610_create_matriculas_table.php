@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('matriculas', function (Blueprint $table) {
             $table->id();
             $table->string('mat_cod_modular')->nullable();
-            $table->dateTime('mat_fecha');
+            $table->date('mat_fecha');
             $table->decimal('mat_costo', 8 ,2);
             $table->string('mat_nivel');
             $table->string('mat_turno');
+            $table->boolean('mat_repit');
+            $table->boolean('mat_estado');
             $table->timestamps();
         });
         Schema::table('pagos', function (Blueprint $table) {
