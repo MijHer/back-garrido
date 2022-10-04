@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('provincias', function (Blueprint $table) {
             $table->id();
             $table->string('prov_nom');
-            $table->date('prov_rgst');
+            $table->string('prov_rgst');
             $table->timestamps();
         });
         Schema::table('distritos', function (Blueprint $table){

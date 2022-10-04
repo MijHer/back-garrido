@@ -87,6 +87,7 @@ class ProfesorController extends Controller
             "error" => false
         ], 200);
     }
+    /* FUNCION PARA BUSCAR PROFESOR */
     public function buscarProfesor(Request $request)
     {
         $buscara = $request->p;

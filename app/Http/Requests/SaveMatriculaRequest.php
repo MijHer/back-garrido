@@ -29,7 +29,6 @@ class SaveMatriculaRequest extends FormRequest
             'mat_costo' => 'required',
             'mat_nivel' => 'required',
             'mat_turno' => 'required',
-            'mat_sec' => 'nullable',
             'mat_repit' => 'nullable',
             'mat_estado' => 'required',           
             'grado_id' => 'required',

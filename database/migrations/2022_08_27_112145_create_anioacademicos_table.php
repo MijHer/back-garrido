@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('anio_nom');
             $table->string('anio_detalle')->nullable();
-            $table->date('anio_inicio');
-            $table->date('anio_fin');
+            $table->string('anio_inicio');
+            $table->string('anio_fin');
             $table->boolean("anio_estado");
             $table->timestamps();
         });

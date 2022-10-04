@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Anioacademico;
-use App\Models\Curso;
-use App\Models\Grado;
-use App\Models\Profesor;
 use Illuminate\Http\Request;
+use App\Models\Asignacion;
+use App\Models\Curso;
+use App\Models\Profesor;
+use App\Models\Grado;
+use App\Models\Anioacademico;
 
 class AsignacionController extends Controller
 {
@@ -18,7 +19,7 @@ class AsignacionController extends Controller
      */
     public function index()
     {
-        $asignacion = with('anioacademico', 'grado', 'curso', 'profesor');
+        $asignacion = Asignacion::with('curso', 'profesor', 'grado', 'anioacademico')->paginate();
         return response()->json($asignacion, 200);
     }
 
@@ -34,17 +35,21 @@ class AsignacionController extends Controller
             'curso_id' => 'required',
             'profesor_id' => 'required',
             'grado_id' => 'required',
-            'anioacademico' => 'required'
+            'anioacademico_id' => 'required',
+            'estado' => 'required'
         ]);
-        $asignacion = new asignacion;
+
+        $asignacion = new Asignacion();
         $asignacion->curso_id = $request->curso_id;
         $asignacion->profesor_id = $request->profesor_id;
         $asignacion->grado_id = $request->grado_id;
-        $asignacion->anioacademico = $request->anioacademico;
+        $asignacion->anioacademico_id = $request->anioacademico_id;
+        $asignacion->estado = $request->estado;
         $asignacion->save();
+
         return response()->json([
             "status" => 1,
-            "mensaje" => "Curso Asignado",
+            "mensaje" => "Asignacion de curso realizado",
             "error" => false
         ], 201);
     }
@@ -57,7 +62,12 @@ class AsignacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $asignacion = Asignacion::FindOrFail($id);
+        return response()->json([
+            "status" => 1,
+            "data" => $asignacion,
+            "error" => false
+        ]);
     }
 
     /**
@@ -69,7 +79,18 @@ class AsignacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $asignacion = Asignacion::FindOrFail($id);
+        $asignacion->curso_id = $request->curso_id;
+        $asignacion->profesor_id = $request->profesor_id;
+        $asignacion->grado_id = $request->grado_id;
+        $asignacion->anioacademico_id = $request->anioacademico_id;
+        $asignacion->estado_id = $request->estado_id;
+        $asignacion->save();
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Asignacion Actualizada",
+            "error" => false
+        ], 201);
     }
 
     /**
@@ -80,6 +101,12 @@ class AsignacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $asignacion = Asignacion::FindOrFail($id);
+        $asignacion->delete();
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Asignacion eliminada",
+            "error" => false
+        ], 200);
     }
 }

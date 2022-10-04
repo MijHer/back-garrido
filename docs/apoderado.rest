@@ -7,10 +7,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "apo_nom": "Isidora",
-    "apo_app": "Castañeda",
-    "apo_apm": "Yacolca",
-    "apo_dni": 91478162,
+    "apo_nom": "Lorenzo",
+    "apo_app": "Cordova",
+    "apo_apm": "Garcia",
+    "apo_dni": 25874136,
     "apo_telf": "958788853",
     "apo_dir": "PInos",
     "apo_fnac": "15/12/59",

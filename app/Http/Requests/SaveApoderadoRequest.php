@@ -27,7 +27,7 @@ class SaveApoderadoRequest extends FormRequest
             'apo_nom' => 'required',
             'apo_app' => 'required',
             'apo_apm' => 'required',
-            'apo_dni'=> 'required|max:8',
+            'apo_dni'=> 'required',
             'apo_telf' => 'nullable',
             'apo_dir' => 'required',
             'apo_fnac' => 'required',

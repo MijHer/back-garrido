@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('alu_nom');
             $table->string('alu_app');
             $table->string('alu_apm');
-            $table->date('alu_fnac');
+            $table->string('alu_fnac');
             $table->string('alu_tipo_doc');
             $table->integer('alu_nmr_doc')->unique();
             $table->string('alu_grado');

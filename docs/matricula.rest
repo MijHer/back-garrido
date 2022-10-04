@@ -11,9 +11,11 @@ Content-Type: application/json
     "mat_fecha": "2020-07-8",
     "mat_costo": 152,
     "mat_nivel": "quinto",
-    "mat_turno": "mañana",    
+    "mat_turno": "mañana",
+    "mat_repit": 1,
+    "mat_estado": 1,
     "grado_id": 1,
-    "distrito_id": 2,
+    "distrito_id": 1,
     "anioacademico_id": 1,
     "alumno_id": 2,
     "apoderado_id": 1

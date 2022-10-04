@@ -9,6 +9,7 @@ Content-Type: application/json
 
 {
     "prov_nom": "Daniel Carrion",
+    "prov_rgst": "2021-12-12",
     "departamento_id": 1
 }
 

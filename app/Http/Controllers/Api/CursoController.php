@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Curso;
+use App\Models\Profesor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveCursoRequest;
+use App\Http\Requests\SavePagoRequest;
 
 class CursoController extends Controller
 {
@@ -16,7 +18,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $curso = Curso::get();
+        $curso = Curso::with('profesores')->get();
         return response()->json($curso, 200);
     }
 
@@ -85,5 +87,27 @@ class CursoController extends Controller
             "mensaje" => "Curso eliminado",
             "error" => false
         ], 200);
+    }
+    /* FUNCION PARA ASIGNAR UN CURSO AL DOCENTE */
+    public function asignarProfesor(Request $request, $id)
+    {
+        $request->validate([
+            'profesor_id' => 'required',
+            'grado_id' => 'required',
+            'anioacademico_id' => 'required'
+        ]);
+
+        $curso = Curso::FindOrFail($id);
+        $curso->profesores()->attach($request->profesor_id, ['grado_id'=>$request->grado_id, 'estado'=>1, 'anioacademico_id'=>$request->anioacademico_id]);
+    }
+    /* FUNCION PARA ELIMINAR LA ASIGNACION DE CURSO Y DOCENTE */
+    public function quitarProfesor(Request $request, $id)
+    {
+        $request->validate([
+            'profesor_id' => 'required',
+        ]);
+
+        $curso = Curso::FindOrFail($id);
+        $curso->profesores()->dettach($request->profesor_id);
     }
 }

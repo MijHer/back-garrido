@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "email": "miher@mail.com",
-    "password": "1234"
+    "password": "miher"
 }
 
 ###registrar usuario
@@ -13,11 +13,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Usuario 2",
+    "name": "Usuario 1",
     "usu_dni": 43741116,
-    "email": "mihe@mail.com",
+    "email": "miher@mail.com",
     "usu_user": "miher",
-    "password": "1234",
+    "password": "miher",
     "password_confirmation": "miher",    
     "usu_dir": "alamos",
     "usu_telf": 957533395,
@@ -44,5 +44,5 @@ Content-Type: application/json
 }
 
 ###Eliminar Usuarios
-DELETE http://127.0.0.1:8000/api/v1/user/12
+DELETE http://127.0.0.1:8000/api/v1/user/1
 Accept: application/json

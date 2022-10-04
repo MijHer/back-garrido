@@ -13,22 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notacurso', function (Blueprint $table) {
+        Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("alumno_id")->unsigned();
             $table->bigInteger("curso_id")->unsigned();
-            $table->bigInteger("profesor_id")->unsigned();
-            $table->bigInteger("anioacademico_id")->unsigned();          
-            
+            $table->bigInteger("anioacademico_id")->unsigned();
+
             $table->foreign("alumno_id")->references("id")->on("alumnos");
             $table->foreign("curso_id")->references("id")->on("cursos");
-            $table->foreign("profesor_id")->references("id")->on("profesors");
             $table->foreign("anioacademico_id")->references("id")->on("anioacademicos");
-            $table->decimal('nota1', 10, 2);
-            $table->decimal('nota2', 10, 2);
-            $table->decimal('nota3', 10, 2);
-            $table->decimal('nota4', 10, 2);
-            $table->string('obs');
+            $table->dateTime('hora');
+            $table->boolean('asistencia');
+            $table->boolean('falta');
+            $table->boolean('tardanza');
+            $table->boolean('permiso');
             $table->timestamps();
         });
     }
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notacurso');
+        Schema::dropIfExists('asistencias');
     }
 };

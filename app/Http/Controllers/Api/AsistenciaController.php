@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Curso;
-use App\Models\Grado;
+use App\Models\Asistencia;
 use Illuminate\Http\Request;
-
 class AsistenciaController extends Controller
 {
     /**
@@ -16,8 +14,12 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        $asistencia = with('curso', 'grado');
-        return response()->json($asistencia, 200);
+        $asistencia = Asistencia::get();
+        return response()->json([$asistencia, 
+            "status" => 1,
+            "mensaje" => "Asistencia registrada",
+            "error" => false
+        , 200]);
     }
 
     /**
@@ -28,7 +30,29 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'alumno_id' => 'required',
+            'curso_id' => 'required',
+            'anioacademico_id' => 'required',
+            'hora' => 'required'
+        ]);
+
+        $asistencia = new Asistencia();
+        $asistencia->alumno_id = $request->alumno_id;
+        $asistencia->curso_id = $request->curso_id;
+        $asistencia->anioacademico_id = $request->anioacademico_id;
+        $asistencia->hora = $request->hora;
+        $asistencia->asistencia = $request->asistencia;
+        $asistencia->falta = $request->falta;
+        $asistencia->tardanza = $request->tardanza;
+        $asistencia->permiso = $request->permiso;
+        $asistencia->save();
+
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Asistencia registrada",
+            "error" => false
+        ], 201);
     }
 
     /**
@@ -39,7 +63,12 @@ class AsistenciaController extends Controller
      */
     public function show($id)
     {
-        //
+        $asistencia = Asistencia::FindOrFail($id);
+        return response()->json([
+            "status" => 1,
+            "data" => $asistencia,
+            "error" => false
+        ]);
     }
 
     /**
@@ -51,7 +80,21 @@ class AsistenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $asistencia = Asistencia::FindOrFail($id);
+        $asistencia->alumno_id = $request->alumno_id;
+        $asistencia->curso_id = $request->curso_id;
+        $asistencia->anioacademico_id = $request->anioacademico_id;
+        $asistencia->hora = $request->hora;
+        $asistencia->asistencia = $request->asistencia;
+        $asistencia->falta = $request->falta;
+        $asistencia->tardanza = $request->tardanza;
+        $asistencia->permiso = $request->permiso;
+        $asistencia->save();
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Asistencia Actualizada",
+            "error" => false
+        ], 200);
     }
 
     /**
@@ -62,6 +105,12 @@ class AsistenciaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $asistencia = Asistencia::FindOrFail($id);
+        $asistencia->delete();
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Asistencia eliminda",
+            "error" => false
+        ], 200);
     }
 }

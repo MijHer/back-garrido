@@ -29,12 +29,12 @@ class TipousuarioController extends Controller
     {
         $request->validate([
             'tipo_nom' => 'required',            
-            'estado' => 'required'
+            'tipo_estado' => 'required'
         ]);
         $tipousuario = new Tipousuario();
         $tipousuario->tipo_nom = $request->tipo_nom;
         $tipousuario->tipo_descripcion = $request->tipo_descripcion;
-        $tipousuario->estado = $request->estado;        
+        $tipousuario->tipo_estado = $request->tipo_estado;        
         $tipousuario->save();
         return response()->json([
             "status" => 1,
@@ -71,7 +71,7 @@ class TipousuarioController extends Controller
         $tipousuario = Tipousuario::FindOrFail($id);
         $tipousuario->tipo_nom = $request->tipo_nom;
         $tipousuario->tipo_descripcion = $request->tipo_descripcion;
-        $tipousuario->estado = $request->estado;        
+        $tipousuario->tipo_estado = $request->tipo_estado;        
         $tipousuario->save();
         return response()->json([
             "status" => 1,

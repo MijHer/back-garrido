@@ -46,7 +46,7 @@ class ApoderadoController extends Controller
      */
     public function show($id)
     {
-        $apoderado = FindOrFail($id);
+        $apoderado = Apoderado::FindOrFail($id);
         return response()->json([
             "status" => 1,
             "data" => $apoderado,

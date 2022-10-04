@@ -15,4 +15,15 @@ class Grado extends Model
     {
         return $this->hasMany(Matricula::class);
     }
+  
+    public function asignaciones()
+    {
+        return $this->hasMany(Asignacion::class);
+    }
+
+    public function cursogrados()
+    {
+        return $this->hasMany(Cursogrado::class);
+    }
 }
+

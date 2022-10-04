@@ -74,7 +74,7 @@ class UserController extends Controller
             'usu_telf' => 'required|max:9',
             'usu_rgst' => 'required',
             'tipousuario_id' => 'required'
-        ]);
+        ]);       
         $user = new User();
         $user->name = $request->name;
         $user->usu_dni = $request->usu_dni;
@@ -83,7 +83,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->usu_dir = $request->usu_dir;
         $user->usu_telf = $request->usu_telf;
-        $user->usu_rgst = $request->usu_rgst;
+        $user->usu_rgst = date('Y-m-d // H:i:s' , strtotime($request->usu_rgst));
         $user->tipousuario_id = $request->tipousuario_id;
         $user->save();
         
@@ -127,7 +127,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->usu_dir = $request->usu_dir;
         $user->usu_telf = $request->usu_telf;
-        $user->usu_rgst = $request->usu_rgst;
+        $user->usu_rgst = date('Y-m-d H:i:s' , strtotime($request->usu_rgst));
         $user->tipousuario_id = $request->tipousuario_id;
         $user->save();
         return response()->json([

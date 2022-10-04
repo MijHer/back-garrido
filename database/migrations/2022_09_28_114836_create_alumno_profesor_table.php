@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asistencia', function (Blueprint $table) {
+        Schema::create('alumno_profesor', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("alumno_id")->unsigned();
-            $table->bigInteger("curso_id")->unsigned();
-            $table->bigInteger("anioacademico_id")->unsigned();
+            $table->bigInteger("profesor_id")->unsigned();
 
             $table->foreign("alumno_id")->references("id")->on("alumnos");
-            $table->foreign("curso_id")->references("id")->on("cursos");
-            $table->foreign("anioacademico_id")->references("id")->on("anioacademicos");
+            $table->foreign("profesor_id")->references("id")->on("profesors");
+            $table->string('anioacademico');
+            $table->string('curso');
             $table->dateTime('hora');
             $table->boolean('asistencia');
             $table->boolean('falta');
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asistencia');
+        Schema::dropIfExists('alumno_profesor');
     }
 };

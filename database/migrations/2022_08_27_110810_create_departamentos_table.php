@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('departamentos', function (Blueprint $table) {
             $table->id();
             $table->string('depa_nom');
-            $table->date('dape_rgst');
+            $table->string('dape_rgst');
             $table->timestamps();
         });
         Schema::table('provincias', function (Blueprint $table){

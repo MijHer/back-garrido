@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('curso_grado', function (Blueprint $table) {
             $table->id();
-            $table->date('pago_fecha');
-            $table->time('pago_hora');
-            $table->decimal('pago_monto', 8, 2);
-            $table->string('pago_concepto');
-            $table->string('pago_periodo');
+            $table->bigInteger("grado_id")->unsigned();
+            $table->bigInteger("curso_id")->unsigned();
+
+            $table->foreign("grado_id")->references("id")->on("grados");
+            $table->foreign("curso_id")->references("id")->on("cursos");
+            $table->string('anioacademico');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('curso_grado');
     }
 };

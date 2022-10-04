@@ -88,7 +88,7 @@ class AlumnoController extends Controller
         ], 200);
         
     }
-
+    /* FUNCION PARA BUSCAR EL ALUMNO */
     public function buscarAlumno(Request $request)
     {
         $buscar = $request->q;

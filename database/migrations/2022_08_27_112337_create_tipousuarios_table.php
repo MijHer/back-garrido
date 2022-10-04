@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_nom');
             $table->string('tipo_descripcion')->nullable();
-            $table->boolean("estado");
+            $table->boolean("tipo_estado");
             $table->timestamps();
         });
         Schema::table('users', function (Blueprint $table){

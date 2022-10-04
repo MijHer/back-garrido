@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('usu_dir');
             $table->integer('usu_telf');
-            $table->date('usu_rgst');
+            $table->dateTime('usu_rgst');
             $table->timestamps();
         });
         Schema::table('alumnos', function (Blueprint $table) {

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Nivel;
+use App\Models\Cursogrado;
 use Illuminate\Http\Request;
 
-class NivelController extends Controller
+class CursogradoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class NivelController extends Controller
      */
     public function index()
     {
-        $nivel = Nivel::get();
-        return response()->json($nivel, 200);
+        $cursogrado = Cursogrado::get();
+        return response()->json($cursogrado, 200);
     }
 
     /**
@@ -28,16 +28,23 @@ class NivelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'niv_nom' => 'required'
+            'grado_id' => 'required',
+            'curso_id' => 'required',
+            'anioacademico' => 'required',
+            'estado' => 'required'
         ]);
-        $nivel = new Nivel();
-        $nivel->niv_nom = $request->niv_nom;        
-        $nivel->save();
-        return response()->json([
+
+        $cursogrado = new Cursogrado();
+        $cursogrado->grado_id = $request->grado_id;
+        $cursogrado->curso_id = $request->curso_id;
+        $cursogrado->anoacademico_id = $request->anoacademico_id;
+        $cursogrado->estado = $request->estado;
+        $cursogrado->save();
+        return response()->json([$cursogrado, 
             "status" => 1,
-            "mensaje" => "Nivel registrado",
+            "mensaje" => "Curso y grado registrado",
             "error" => false
-        ], 201);
+        , 201]);
     }
 
     /**
@@ -48,10 +55,10 @@ class NivelController extends Controller
      */
     public function show($id)
     {
-        $nivel = Nivel::FindOrFail($id);
+        $cursogrado = Cursogrado::FindOrFail($id);
         return response()->json([
             "status" => 1,
-            "data" => $nivel,
+            "data" => $cursogrado,
             "error" => false
         ]);
     }
@@ -65,14 +72,17 @@ class NivelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $nivel = Nivel::FindOrFail($id);       
-        $nivel->niv_nom = $request->niv_nom;        
-        $nivel->save();
-        return response()->json([
+        $cursogrado = Cursogrado::FindOrFail($id);
+        $cursogrado->grado_id = $request->grado_id;
+        $cursogrado->curso_id = $request->curso_id;
+        $cursogrado->anoacademico_id = $request->anoacademico_id;
+        $cursogrado->estado = $request->estado;
+        $cursogrado->save();
+        return response()->json([$cursogrado, 
             "status" => 1,
-            "mensaje" => "Nivel Actualizado",
+            "mensaje" => "Curso y grado Actualizado",
             "error" => false
-        ], 201);
+        , 200]);
     }
 
     /**
@@ -83,12 +93,12 @@ class NivelController extends Controller
      */
     public function destroy($id)
     {
-        $nivel = Nivel::FindOrFail($id);
-        $nivel->delete();
+        $cursogrado = Cursogrado::FindOrFail($id);
+        $cursogrado->delete();
         return response()->json([
             "status" => 1,
-            "mensaje" => "Nivel Elimindo",
-            "error" => false
+            "mensaje" => "Asginacion de curso eliminada",
+            "error" => false,
         ], 200);
     }
 }

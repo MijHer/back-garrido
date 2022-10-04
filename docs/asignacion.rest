@@ -7,8 +7,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "curso_id": "1",
-    "profesor_id": "1",
-    "grado_id": "1",
-    "anioacademico": "1"
+    "curso_id": 1,
+    "profesor_id": 1,
+    "grado_id": 1,
+    "anioacademico_id": 1,
+    "estado": 1
 }

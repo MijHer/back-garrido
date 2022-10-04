@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('gra_nom');
             $table->string('gra_seccion');
             $table->string('gra_nivel');
-            $table->date('gra_registro');
+            $table->string('gra_registro');
             $table->boolean('gra_estado');
             $table->timestamps();
         });

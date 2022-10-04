@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('apo_dni')->unique();
             $table->integer('apo_telf')->nullable();
             $table->string('apo_dir');
-            $table->date('apo_fnac');
+            $table->string('apo_fnac');
             $table->string('apo_vinculo');
             $table->string('apo_grado_inst')->nullable();
             $table->boolean('apo_estado');

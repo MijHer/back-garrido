@@ -10,7 +10,7 @@ Content-Type: application/json
 {
     "tipo_nom": "Miher",
     "tipo_descripcion": "ADMIN",
-    "estado": true
+    "tipo_estado": true
 }
 
 ### Modificar tipousuario

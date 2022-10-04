@@ -24,7 +24,8 @@ class SavePagoRequest extends FormRequest
     public function rules()
     {
         return [
-            'pago_fecha' => 'required',
+            'pago_fecha' => 'required|date',
+            'pago_hora' => 'required',
             'pago_monto' => 'required',
             'pago_concepto' => 'required',
             'pago_periodo' => 'required',

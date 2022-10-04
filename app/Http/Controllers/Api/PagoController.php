@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Pago;
+use Carbon\Carbon;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,7 @@ class PagoController extends Controller
      */
     public function index()
     {
-        $pago = Pago::with('alumno')->get();
+        $pago = Pago::with('alumno')->get();        
         return response()->json($pago, 200);
     }
 
@@ -29,7 +30,7 @@ class PagoController extends Controller
      */
     public function store(SavePagoRequest $request)
     {
-        Pago::create( $request->validated());
+        Pago::create( $request->validated());        
         return response()->json([
             "status" => 1,
             "mensaje" => "Pago realizado",
