@@ -7,7 +7,6 @@ use App\Models\Profesor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveCursoRequest;
-use App\Http\Requests\SavePagoRequest;
 
 class CursoController extends Controller
 {
@@ -104,10 +103,10 @@ class CursoController extends Controller
     public function quitarProfesor(Request $request, $id)
     {
         $request->validate([
-            'profesor_id' => 'required',
+            'profesor_id' => 'required'
         ]);
 
         $curso = Curso::FindOrFail($id);
-        $curso->profesores()->dettach($request->profesor_id);
+        $curso->profesores()->detach($request->profesor_id);
     }
 }

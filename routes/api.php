@@ -43,9 +43,13 @@ Route::get("/v1/user/show", [UserController::class, "show"]);
 Route::patch("/v1/user/update/{id}", [UserController::class, "update"]);
 Route::delete("/v1/user/destroy/{id}", [UserController::class, "destroy"]);
 
-//Asiganr nuevo docente al curso
+// ASIGNAR DOCENTE A LOS CURSOS
 Route::post("/v1/curso/{id}/asignar-profesor", [CursoController::class, "asignarProfesor"]);
 Route::post("/v1/curso/{id}/quitar-profesor", [CursoController::class, "quitarProfesor"]);
+
+//ASIGNAR CURSO A LOS GRADOS
+Route::post("/v1/grado/{id}/asignar-curso", [GradoController::class], "asignarCurso");
+Route::post("/v1/grado/{id}/quitar-curso", [GradoController::class], "quitarCurso");
 
 Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
 

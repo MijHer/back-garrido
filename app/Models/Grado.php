@@ -14,16 +14,10 @@ class Grado extends Model
     public function matriculas()
     {
         return $this->hasMany(Matricula::class);
-    }
-  
-    public function asignaciones()
+    }  
+    public function cursos()
     {
-        return $this->hasMany(Asignacion::class);
-    }
-
-    public function cursogrados()
-    {
-        return $this->hasMany(Cursogrado::class);
+        return $this->belongsToMany(Curso::class)->withPivot('anioacademico', 'estado')->withTimestamps();
     }
 }
 

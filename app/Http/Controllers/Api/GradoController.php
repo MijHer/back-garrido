@@ -103,4 +103,29 @@ class GradoController extends Controller
             "error" => false
         ], 200);
     }
+    /* FUNCION PARA AGREGAR LOS CURSOS A GRADOS */
+    public function asignarCurso(Request $request, $id)
+    {
+        $request->validate([
+            'grado_id' => 'required',
+            'curso_id' => 'required',
+            'anioacademico' => 'required',
+            'estado' => 'required'
+        ]);
+
+        $grado = Grado::FindOrFail($id);
+        $grado->cursos()->attach($request->curso_id, ['anioacademico'=>$request, 'estado'=>1]);
+    }
+
+    /* FUNCION PARA ELMINAR LA ASIGNACIONDE CURSOS Y GRADOS */
+
+    public function quitarCurso(Request $request, $id)
+    {
+        $request->validate([
+            'curso_id' =>  'required'
+        ]);
+        
+        $grado = Grado::FindOrFail($id);
+        $grado->cursos()->detach($request->curso_id);
+    }
 }

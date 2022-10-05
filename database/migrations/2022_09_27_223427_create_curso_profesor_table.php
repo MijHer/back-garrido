@@ -20,10 +20,10 @@ return new class extends Migration
             $table->bigInteger("grado_id")->unsigned();
             $table->bigInteger("anioacademico_id")->unsigned();
 
-            $table->foreign("curso_id")->references("id")->on("cursos");
-            $table->foreign("profesor_id")->references("id")->on("profesors");
-            $table->foreign("grado_id")->references("id")->on("grados");
-            $table->foreign("anioacademico_id")->references("id")->on("anioacademicos");
+            $table->foreign("curso_id")->references("id")->on("cursos");                    
+            $table->foreign("profesor_id")->references("id")->on("profesors");                    
+            $table->foreign("grado_id")->references("id")->on("grados");                    
+            $table->foreign("anioacademico_id")->references("id")->on("anioacademicos");                    
             $table->boolean("estado");
             $table->timestamps();
         });
@@ -35,7 +35,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {
+    {        
         Schema::dropIfExists('curso_profesor');
     }
 };

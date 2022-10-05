@@ -18,8 +18,8 @@ return new class extends Migration
             $table->bigInteger("alumno_id")->unsigned();
             $table->bigInteger("profesor_id")->unsigned();
 
-            $table->foreign("alumno_id")->references("id")->on("alumnos");
-            $table->foreign("profesor_id")->references("id")->on("profesors");
+            $table->foreign("alumno_id")->references("id")->on("alumnos");                    
+            $table->foreign("profesor_id")->references("id")->on("profesors");                    
             $table->string('anioacademico');
             $table->string('curso');
             $table->dateTime('hora');

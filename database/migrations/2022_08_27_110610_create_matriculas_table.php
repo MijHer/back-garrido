@@ -31,7 +31,6 @@ return new class extends Migration
                 ->onDelete('set null');
         });
     }
-
     /**
      * Reverse the migrations.
      *

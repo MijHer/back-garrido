@@ -11,25 +11,10 @@ class Profesor extends Model
 
     protected $guarded = [];
 
-   /*  public function calificacions()
-    {
-        return $this->hasMany(Calificacion::class);
-    } */
-
     public function user()
     {
         return $this->belongsTo(User::class);
-    }    
-
-    /* public function asistencia() 
-    {
-        return $this->hasMany(Asistencia::class);
     }
-
-    public function asignaciones() 
-    {
-        return $this->hasMany(Asignacion::class);
-    } */
     public function cursos()
     {
         return $this->belongsToMany(Curso::class)->withPivot('grado_id', 'anioacademico_id', 'estado')->withTimestamps();

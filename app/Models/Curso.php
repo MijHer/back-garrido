@@ -11,28 +11,12 @@ class Curso extends Model
 
     protected $guarded = [];
 
-    /* public function calificaciones()
+    public function grados()
     {
-        return $this->hasMany(Calificacion::class);
+        return $this->belongsToMany(Grado::class)->withPivot('anioacademico', 'estado')->withTimestamps();
     }
-
-    public function asistencias() 
-    {
-        return $this->hasMany(Asistencia::class);
-    }
-
-    public function asignaciones()
-    {
-        return $this->hasMany(Asignacion::class);
-    }
-
-    public function cursogrados()
-    {
-        return $this->hasMany(Cursogrado::class);
-    } */
     public function profesores()
     {
         return $this->belongsToMany(Profesor::class)->withPivot('grado_id', 'anioacademico_id', 'estado')->withTimestamps();
     }
-
 }
