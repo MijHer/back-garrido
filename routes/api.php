@@ -5,15 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AlumnoController;
 use App\Http\Controllers\Api\AnioacademicoController;
 use App\Http\Controllers\Api\ApoderadoController;
-use App\Http\Controllers\Api\AsignacionController;
-use App\Http\Controllers\Api\AsistenciaController;
 use App\Http\Controllers\Api\CursoController;
 use App\Http\Controllers\Api\DepartamentoController;
 use App\Http\Controllers\Api\DistritoController;
 use App\Http\Controllers\Api\GradoController;
 use App\Http\Controllers\Api\MatriculaController;
-use App\Http\Controllers\Api\CalificacionController;
-use App\Http\Controllers\Api\CursogradoController;
 use App\Http\Controllers\Api\PagoController;
 use App\Http\Controllers\Api\ProfesorController;
 use App\Http\Controllers\Api\ProvinciaController;
@@ -51,20 +47,20 @@ Route::post("/v1/curso/{id}/quitar-profesor", [CursoController::class, "quitarPr
 Route::post("/v1/grado/{id}/asignar-curso", [GradoController::class], "asignarCurso");
 Route::post("/v1/grado/{id}/quitar-curso", [GradoController::class], "quitarCurso");
 
+//LLAMAR ASISTENCIA
+Route::post("/v1/alumno/{id}/llamar-asistencia", [AlumnoController::class], "asistenciaAlumno");
+
+//BUSCA ALUMNO PARA MATRICULAS Y PAGOS
 Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
 
 Route::apiResource("v1/alumno", AlumnoController::class);
 Route::apiResource("v1/anioacademico", AnioacademicoController::class);
 Route::apiResource("v1/apoderado", ApoderadoController::class);
-Route::apiResource("v1/asignacion", AsignacionController::class);
-Route::apiResource("v1/asistencia", AsistenciaController::class);
 Route::apiResource("v1/curso", CursoController::class);
 Route::apiResource("v1/departamento", DepartamentoController::class);
 Route::apiResource("v1/distrito", DistritoController::class);
 Route::apiResource("v1/grado", GradoController::class);
 Route::apiResource("v1/matricula", MatriculaController::class);
-Route::apiResource("v1/calificacion", CalificacionController::class);
-Route::apiResource("v1/cursogrado", CursogradoController::class);
 Route::apiResource("v1/pago", PagoController::class);
 Route::apiResource("v1/profesor", ProfesorController::class);
 Route::apiResource("v1/provincia", ProvinciaController::class);

@@ -17,6 +17,6 @@ class Curso extends Model
     }
     public function profesores()
     {
-        return $this->belongsToMany(Profesor::class)->withPivot('grado_id', 'anioacademico_id', 'estado')->withTimestamps();
+        return $this->belongsToMany(Profesor::class)->withPivot('grado_id','seccion', 'anioacademico_id', 'estado')->withTimestamps();
     }
 }

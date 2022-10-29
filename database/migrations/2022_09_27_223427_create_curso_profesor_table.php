@@ -17,13 +17,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger("curso_id")->unsigned();
             $table->bigInteger("profesor_id")->unsigned();
-            $table->bigInteger("grado_id")->unsigned();
-            $table->bigInteger("anioacademico_id")->unsigned();
-
             $table->foreign("curso_id")->references("id")->on("cursos");                    
-            $table->foreign("profesor_id")->references("id")->on("profesors");                    
-            $table->foreign("grado_id")->references("id")->on("grados");                    
-            $table->foreign("anioacademico_id")->references("id")->on("anioacademicos");                    
+            $table->foreign("profesor_id")->references("id")->on("profesors");
+            $table->string("grado_id");
+            $table->string("seccion");
+            $table->string("anioacademico_id");
             $table->boolean("estado");
             $table->timestamps();
         });

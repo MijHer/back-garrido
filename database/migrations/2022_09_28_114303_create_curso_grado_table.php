@@ -19,7 +19,9 @@ return new class extends Migration
             $table->bigInteger("curso_id")->unsigned();
 
             $table->foreign("grado_id")->references("id")->on("grados");                    
-            $table->foreign("curso_id")->references("id")->on("cursos");                    
+            $table->foreign("curso_id")->references("id")->on("cursos");
+            $table->string("seccion");
+            $table->string("nivel");
             $table->string('anioacademico');
             $table->boolean('estado');
             $table->timestamps();

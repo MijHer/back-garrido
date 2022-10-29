@@ -7,12 +7,13 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "pago_fecha": "20/08/2022",
+    "pago_fecha": "2022-12-12",
+    "pago_hora": "15:30:15",
     "pago_monto": 225,
     "pago_concepto": "pago del mes de marzo",
     "pago_periodo": "abril - mayo",
-    "matricula_id": 3,
-    "alumno_id": 2
+    "matricula_id": 1,
+    "alumno_id": 1
 }
 
 ###modificar pago

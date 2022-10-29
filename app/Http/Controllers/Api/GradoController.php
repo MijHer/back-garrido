@@ -15,7 +15,7 @@ class GradoController extends Controller
      */
     public function index()
     {
-        $grado = Grado::all();
+        $grado = Grado::with('cursos')->get();
         return response()->json($grado, 200);
     }
 
@@ -118,7 +118,6 @@ class GradoController extends Controller
     }
 
     /* FUNCION PARA ELMINAR LA ASIGNACIONDE CURSOS Y GRADOS */
-
     public function quitarCurso(Request $request, $id)
     {
         $request->validate([

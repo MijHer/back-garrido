@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Alumno;
-use App\Models\Apoderado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveAlumnoRequest;
@@ -17,7 +16,7 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumno = Alumno::with('apoderado')->paginate();
+        $alumno = Alumno::with('apoderado', 'profesores')->paginate();
         return response()->json($alumno, 200);
     }
 
@@ -88,11 +87,31 @@ class AlumnoController extends Controller
         ], 200);
         
     }
+
     /* FUNCION PARA BUSCAR EL ALUMNO */
     public function buscarAlumno(Request $request)
     {
         $buscar = $request->q;
         $alumno = Alumno::orWhere('alu_nmr_doc', 'like', '%'.$buscar.'%')->with('apoderado')->first();
         return response()->json($alumno, 200);
+    }
+
+    /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO */
+    public function asistenciaAlumno(Request $request, $id)
+    {
+        $request->validate([
+            'alumno_id' => 'required',
+            'profesor_id' => 'required',
+            'anioacademico' => 'required',
+            'curso' => 'required',
+            'hora' => 'required',
+            'asistencia' => 'required',
+            'falta' => 'required',
+            'tardanza' => 'required',
+            'permiso' => 'required'
+        ]);
+        /* $alumno = $asistencia */
+        $alumno = Alumno::findOrFail($id);
+        $alumno->profesores()->attach($request->alumno_id, ['anioacademico'=>$request, 'curso'=>$request, 'hora'=>$request, 'asistencia'=>1, 'falta'=>1, 'tardanza'=>1, 'permiso'=>1]);
     }
 }

@@ -8,7 +8,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "tipo_nom": "Miher",
+    "tipo_nom": "Administrador",
     "tipo_descripcion": "ADMIN",
     "tipo_estado": true
 }

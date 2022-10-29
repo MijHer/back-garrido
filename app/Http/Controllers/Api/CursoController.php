@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Curso;
-use App\Models\Profesor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveCursoRequest;
+use App\Models\Profesor;
 
 class CursoController extends Controller
 {
@@ -93,12 +93,21 @@ class CursoController extends Controller
         $request->validate([
             'profesor_id' => 'required',
             'grado_id' => 'required',
-            'anioacademico_id' => 'required'
+            'anioacademico_id' => 'required',
+            'seccion' => 'required'
         ]);
 
         $curso = Curso::FindOrFail($id);
-        $curso->profesores()->attach($request->profesor_id, ['grado_id'=>$request->grado_id, 'estado'=>1, 'anioacademico_id'=>$request->anioacademico_id]);
+        $curso->profesores()->attach($request->profesor_id, ['grado_id'=>$request->grado_id, 'seccion'=>$request->seccion, 'anioacademico_id'=>$request->anioacademico_id, 'estado'=>1]);
+        $profesor = $curso->profesores;        
+        return response()->json([
+            "status" => 1,
+            "data" => $profesor,
+            "mensaje" => "Docente Asignado",
+            "error" => false
+        ], 200);
     }
+    
     /* FUNCION PARA ELIMINAR LA ASIGNACION DE CURSO Y DOCENTE */
     public function quitarProfesor(Request $request, $id)
     {

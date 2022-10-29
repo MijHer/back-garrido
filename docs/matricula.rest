@@ -17,7 +17,7 @@ Content-Type: application/json
     "grado_id": 1,
     "distrito_id": 1,
     "anioacademico_id": 1,
-    "alumno_id": 2,
+    "alumno_id": 1,
     "apoderado_id": 1
 }
 

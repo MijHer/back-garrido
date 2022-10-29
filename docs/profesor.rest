@@ -9,14 +9,14 @@ Content-Type: application/json
 
 {
     "user_id": 1,
-    "pro_nom": "Gibbs",
-    "pro_app": "Lorenzo",
+    "pro_nom": "Hobbes",
+    "pro_app": "Estrella",
     "pro_apm": "Cordova",
     "pro_dire": "Jr los pinos",
     "pro_telf": "985563365",
     "pro_correo": "profersor@mail.com",
     "pro_sexo": "masculino",
-    "pro_dni": 25198838,
+    "pro_dni": 25128118,
     "pro_grado_instruccion": "superior",
     "pro_especialidad": "Trigonometria",
     "pro_pais": "peru",
