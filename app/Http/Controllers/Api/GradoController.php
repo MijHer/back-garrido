@@ -109,12 +109,21 @@ class GradoController extends Controller
         $request->validate([
             'grado_id' => 'required',
             'curso_id' => 'required',
+            'seccion' => 'required',
+            'nivel' => 'required',
             'anioacademico' => 'required',
             'estado' => 'required'
         ]);
 
         $grado = Grado::FindOrFail($id);
-        $grado->cursos()->attach($request->curso_id, ['anioacademico'=>$request, 'estado'=>1]);
+        $grado->cursos()->attach($request->curso_id, ['seccion'=>$request->seccion, 'nivel'=>$request->nivel, 'anioacademico'=>$request->anioacademico, 'estado'=>1]);
+        $curso = $grado->cursos;
+        return response()->json([
+            "status" => 1,
+            "data" => $curso,
+            "mensaje" => "Curso asignado",
+            "error" => false
+        ],200);
     }
 
     /* FUNCION PARA ELMINAR LA ASIGNACIONDE CURSOS Y GRADOS */
