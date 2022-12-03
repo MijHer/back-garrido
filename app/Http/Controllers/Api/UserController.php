@@ -31,6 +31,7 @@ class UserController extends Controller
                     "status" => 1,
                     "mensaje" => "Usuario logueado",
                     "user" => $user,
+                    /* "password" => $user->password, */
                     "error" => false,
                     "access_token" => $token
                 ], 200);

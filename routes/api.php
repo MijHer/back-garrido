@@ -33,36 +33,43 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     
 }); */
 Route::post("/v1/user/login", [UserController::class, "login"]);
-Route::get("/v1/user/index", [UserController::class, "index"]);
-Route::post("/v1/user/registro", [UserController::class, "registro"]);
-Route::get("/v1/user/show", [UserController::class, "show"]);
-Route::patch("/v1/user/update/{id}", [UserController::class, "update"]);
-Route::delete("/v1/user/destroy/{id}", [UserController::class, "destroy"]);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get("/v1/user/index", [UserController::class, "index"]);
+    Route::post("/v1/user/registro", [UserController::class, "registro"]);
+    Route::get("/v1/user/show", [UserController::class, "show"]);
+    Route::patch("/v1/user/update/{id}", [UserController::class, "update"]);
+    Route::delete("/v1/user/destroy/{id}", [UserController::class, "destroy"]);
 
 // ASIGNAR DOCENTE A LOS CURSOS
-Route::post("/v1/curso/{id}/asignar-profesor", [CursoController::class, "asignarProfesor"]);
-Route::post("/v1/curso/{id}/quitar-profesor", [CursoController::class, "quitarProfesor"]);
+    Route::post("/v1/curso/{id}/asignar-profesor", [CursoController::class, "asignarProfesor"]);
+    Route::post("/v1/curso/{id}/quitar-profesor", [CursoController::class, "quitarProfesor"]);
 
 //ASIGNAR CURSO A LOS GRADOS
-Route::post("/v1/grado/{id}/asignar-curso", [GradoController::class, "asignarCurso"]);
-Route::post("/v1/grado/{id}/quitar-curso", [GradoController::class, "quitarCurso"]);
+    Route::post("/v1/grado/{id}/asignar-curso", [GradoController::class, "asignarCurso"]);
+    Route::post("/v1/grado/{id}/quitar-curso", [GradoController::class, "quitarCurso"]);
 
-//LLAMAR ASISTENCIA
-Route::post("/v1/alumno/{id}/llamar-asistencia", [AlumnoController::class], "asistenciaAlumno");
+//LLAMAR ASISTENCIA UNO POR UNO
+    Route::post("/v1/alumno/{id}/llamar-asistencia", [AlumnoController::class, "asistenciaAlumno"]);
+
+//LLAMAR ASISTENCIA MASIVO
+
+    Route::post("/v1/alumno/registrar-asistencia", [AlumnoController::class, "registrarAsistencia"]);
 
 //BUSCA ALUMNO PARA MATRICULAS Y PAGOS
-Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
+    Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
 
-Route::apiResource("v1/alumno", AlumnoController::class);
-Route::apiResource("v1/anioacademico", AnioacademicoController::class);
-Route::apiResource("v1/apoderado", ApoderadoController::class);
-Route::apiResource("v1/curso", CursoController::class);
-Route::apiResource("v1/departamento", DepartamentoController::class);
-Route::apiResource("v1/distrito", DistritoController::class);
-Route::apiResource("v1/grado", GradoController::class);
-Route::apiResource("v1/matricula", MatriculaController::class);
-Route::apiResource("v1/pago", PagoController::class);
-Route::apiResource("v1/profesor", ProfesorController::class);
-Route::apiResource("v1/provincia", ProvinciaController::class);
-Route::apiResource("v1/tipousuario", TipousuarioController::class);
-
+    Route::apiResource("v1/alumno", AlumnoController::class);
+    Route::apiResource("v1/anioacademico", AnioacademicoController::class);
+    Route::apiResource("v1/apoderado", ApoderadoController::class);
+    Route::apiResource("v1/curso", CursoController::class);
+    Route::apiResource("v1/departamento", DepartamentoController::class);
+    Route::apiResource("v1/distrito", DistritoController::class);
+    Route::apiResource("v1/grado", GradoController::class);
+    Route::apiResource("v1/matricula", MatriculaController::class);
+    Route::apiResource("v1/pago", PagoController::class);
+    Route::apiResource("v1/profesor", ProfesorController::class);
+    Route::apiResource("v1/provincia", ProvinciaController::class);
+    Route::apiResource("v1/tipousuario", TipousuarioController::class);
+});

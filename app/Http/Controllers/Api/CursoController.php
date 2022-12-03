@@ -99,7 +99,7 @@ class CursoController extends Controller
 
         $curso = Curso::FindOrFail($id);
         $curso->profesores()->attach($request->profesor_id, ['grado_id'=>$request->grado_id, 'seccion'=>$request->seccion, 'anioacademico_id'=>$request->anioacademico_id, 'estado'=>1]);
-        $profesor = $curso->profesores;        
+        $profesor = $curso->profesores;
         return response()->json([
             "status" => 1,
             "data" => $profesor,

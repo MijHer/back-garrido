@@ -6,6 +6,8 @@ use App\Models\Alumno;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveAlumnoRequest;
+use App\Models\Profesor;
+use Illuminate\Support\Facades\Auth;
 
 class AlumnoController extends Controller
 {
@@ -113,5 +115,25 @@ class AlumnoController extends Controller
         /* $alumno = $asistencia */
         $alumno = Alumno::findOrFail($id);
         $alumno->profesores()->attach($request->alumno_id, ['anioacademico'=>$request, 'curso'=>$request, 'hora'=>$request, 'asistencia'=>1, 'falta'=>1, 'tardanza'=>1, 'permiso'=>1]);
+    }
+    public function registrarAsistencia(Request $request)
+    {
+        $request->validate([
+            'curso_id' => 'required',
+            'alumnos' => 'required'
+        ]);
+        /* $profesor_id = Auth::user()->profesor->id; */
+        $profesor = Profesor::where('user_id', Auth::user()->id)->first();
+        foreach ($request->alumnos as $alumno) {
+            $alumno_id = $alumno['id'];
+            $asistencia = $alumno['asistencia'];
+            $falta = $alumno['falta'];
+            $tardanza = $alumno['tardanza'];
+            $permiso = $alumno['permiso'];
+            $profesor->alumnos()->attach($alumno_id, ['anioacademico'=>"2022/11/09", 'curso'=>"religion", 'hora'=>"2022-11-08 22:44:39",'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
+        }
+        return response()->json([
+            "mensaje" => 'aqui mensaje'
+        ]);
     }
 }
