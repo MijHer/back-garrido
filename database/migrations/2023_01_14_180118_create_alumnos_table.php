@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('alu_apm');
             $table->string('alu_fnac');
             $table->string('alu_tipo_doc');
-            $table->integer('alu_nmr_doc')->unique();
+            $table->string('alu_nmr_doc')->unique();
             $table->string('alu_grado');
             $table->string('alu_pais');
             $table->string('alu_departamento');
@@ -39,7 +39,7 @@ return new class extends Migration
             $table->string('alu_app_madre');
             $table->string('alu_apm_madre');
             $table->string('alu_tipo_doc_madre');
-            $table->integer('alu_dni_madre')->unique();
+            $table->string('alu_dni_madre')->unique();
             $table->string('alu_civil_madre');
             $table->string('alu_vive_madre');
             $table->string('alu_fnca_madre')->nullable();
@@ -51,7 +51,7 @@ return new class extends Migration
             $table->string('alu_app_padre');
             $table->string('alu_apm_padre');
             $table->string('alu_tipo_doc_padre');
-            $table->integer('alu_dni_padre')->unique();
+            $table->string('alu_dni_padre')->unique();
             $table->string('alu_vive_padre');
             $table->string('alu_fnca_padre')->nullable();
             $table->string('alu_vive_con_padre');
@@ -73,6 +73,13 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('set null');
         });
+        Schema::table('users', function (Blueprint $table)
+        {
+           $table->unsignedBigInteger('alumno_id')->after('usu_rgst')->nullable();
+           $table->foreign('alumno_id')->references('id')->on('alumnos')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+        });
     }
 
     /**
@@ -88,6 +95,10 @@ return new class extends Migration
         });
         Schema::table('pagos', function (Blueprint $table) {
             $table->dropForeign('pagos_alumno_id_foreign');
+            $table->dropColumn('alumno_id');
+        });
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_alumno_id_foreign');
             $table->dropColumn('alumno_id');
         });
         Schema::dropIfExists('alumnos');

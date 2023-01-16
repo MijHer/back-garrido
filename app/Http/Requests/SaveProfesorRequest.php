@@ -23,8 +23,7 @@ class SaveProfesorRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'user_id' => 'required',
+        return [            
             'pro_nom' => 'required',
             'pro_app' => 'required',
             'pro_apm' => 'required',

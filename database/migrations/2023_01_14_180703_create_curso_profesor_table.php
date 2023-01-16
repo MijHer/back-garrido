@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('curso_profesor', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("curso_id")->unsigned();
-            $table->bigInteger("profesor_id")->unsigned();
-            $table->foreign("curso_id")->references("id")->on("cursos");                    
-            $table->foreign("profesor_id")->references("id")->on("profesors");
+            $table->bigInteger("curso_id")->unsigned()->nullable();
+            $table->bigInteger("profesor_id")->unsigned()->nullable();
+            $table->foreign("curso_id")->references("id")->on("cursos")
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+            $table->foreign("profesor_id")->references("id")->on("profesors")
+                ->onUpdate('cascade')
+                ->onDelete('set null');
             $table->string("grado_id");
             $table->string("seccion");
             $table->string("anioacademico_id");
@@ -33,7 +37,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {        
+    {
         Schema::dropIfExists('curso_profesor');
     }
 };

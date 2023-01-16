@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('alumno_curso', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("alumno_id")->unsigned();
-            $table->bigInteger("curso_id")->unsigned();
+            $table->bigInteger("alumno_id")->unsigned()->nullable();
+            $table->bigInteger("curso_id")->unsigned()->nullable();
             
-            $table->foreign("alumno_id")->references("id")->on("alumnos");                    
-            $table->foreign("curso_id")->references("id")->on("cursos");                    
+            $table->foreign("alumno_id")->references("id")->on("alumnos")
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+            $table->foreign("curso_id")->references("id")->on("cursos")
+                ->onUpdate('cascade')
+                ->onDelete('set null');
             $table->string('anioacademico');
             $table->string('profesor');
             $table->decimal('nota1', 10, 2);

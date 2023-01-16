@@ -30,12 +30,12 @@ class PagoController extends Controller
      */
     public function store(SavePagoRequest $request)
     {
-        Pago::create( $request->validated());        
+        Pago::create( $request->validated() );        
         return response()->json([
             "status" => 1,
             "mensaje" => "Pago realizado",
             "error" => false
-        ], 201);
+        ], 200);
     }
 
     /**
@@ -87,5 +87,11 @@ class PagoController extends Controller
             "mensaje" => "Pago Eliminado",
             "error" => false
         ], 200);
+    }
+
+    public function contarPagos()
+    {
+        $contarPago = Pago::count();
+        return response()->json($contarPago, 200);
     }
 }

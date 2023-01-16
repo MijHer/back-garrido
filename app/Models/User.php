@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function profesor()
     {
-        return $this->hasOne(Profesor::class);
+        return $this->belongsTo(Profesor::class);
     }
 
     public function tipousuario()

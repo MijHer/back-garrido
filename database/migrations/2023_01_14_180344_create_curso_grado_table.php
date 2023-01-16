@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('curso_grado', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("grado_id")->unsigned();
-            $table->bigInteger("curso_id")->unsigned();
 
-            $table->foreign("grado_id")->references("id")->on("grados");                    
-            $table->foreign("curso_id")->references("id")->on("cursos");
+            $table->bigInteger("curso_id")->unsigned()->nullable();
+            $table->bigInteger("grado_id")->unsigned()->nullable();
+
+            $table->foreign("curso_id")->references("id")->on("cursos")
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+            $table->foreign("grado_id")->references("id")->on("grados")
+                ->onUpdate('cascade')
+                ->onDelete('set null');
             $table->string("seccion");
             $table->string("nivel");
             $table->string('anioacademico');

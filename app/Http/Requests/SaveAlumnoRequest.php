@@ -24,7 +24,6 @@ class SaveAlumnoRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'nullable',
             'alu_foto' => 'nullable',
             'alu_nom' => 'required',
             'alu_app' => 'required',

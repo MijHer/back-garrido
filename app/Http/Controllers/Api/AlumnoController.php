@@ -98,7 +98,7 @@ class AlumnoController extends Controller
         return response()->json($alumno, 200);
     }
 
-    /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO */
+    /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO NULO*/
     public function asistenciaAlumno(Request $request, $id)
     {
         $request->validate([
@@ -116,6 +116,7 @@ class AlumnoController extends Controller
         $alumno = Alumno::findOrFail($id);
         $alumno->profesores()->attach($request->alumno_id, ['anioacademico'=>$request, 'curso'=>$request, 'hora'=>$request, 'asistencia'=>1, 'falta'=>1, 'tardanza'=>1, 'permiso'=>1]);
     }
+    /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO FIRME*/
     public function registrarAsistencia(Request $request)
     {
         $request->validate([
@@ -135,5 +136,10 @@ class AlumnoController extends Controller
         return response()->json([
             "mensaje" => 'aqui mensaje'
         ]);
+    }
+    public function contarAlumnos()
+    {
+        $contarAlumno = Alumno::count();
+        return response()->json($contarAlumno, 200);
     }
 }

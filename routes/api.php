@@ -54,8 +54,21 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/v1/alumno/{id}/llamar-asistencia", [AlumnoController::class, "asistenciaAlumno"]);
 
 //LLAMAR ASISTENCIA MASIVO
-
     Route::post("/v1/alumno/registrar-asistencia", [AlumnoController::class, "registrarAsistencia"]);
+
+/* CONTAR CANTIDAD DE ALUMNOS INSCRITOS AL SISTEMA */
+    Route::get("/v1/alumno/contar-alumnos", [AlumnoController::class, "contarAlumnos"]);
+
+/* CONTAR CANTIDAD DE ALUMNOS MATRICULADOS */
+    Route::get("/v1/matricula/contar-matriculados", [MatriculaController::class, "contarMatriculas"]);
+
+    Route::get("/v1/profesor/contar-profesores", [ProfesorController::class, "contarProfesoresSi"]);
+
+    Route::get("/v1/profesor/contar-profesorestotal", [ProfesorController::class, "contarProfesores"]);
+
+    Route::get("/v1/user/contar-users", [UserController::class, "contarUsers"]);
+
+    Route::get("/v1/pago/contar-pagos", [PagoController::class, "contarPagos"]);
 
 //BUSCA ALUMNO PARA MATRICULAS Y PAGOS
     Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);

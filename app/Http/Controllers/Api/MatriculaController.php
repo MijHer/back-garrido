@@ -92,4 +92,10 @@ class MatriculaController extends Controller
             "error" => false
         ], 200);
     }
+
+    public function contarMatriculas()
+    {
+        $contarMatricula = Matricula::count();
+        return response()->json($contarMatricula, 200);
+    }
 }

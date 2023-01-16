@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveProfesorRequest;
 use App\Models\Profesor;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfesorController extends Controller
@@ -17,7 +16,7 @@ class ProfesorController extends Controller
      */
     public function index()
     {
-        $profesor = Profesor::paginate();
+        $profesor = Profesor::with('user')->paginate();
         return response()->json($profesor, 200);
     }
 
@@ -93,5 +92,17 @@ class ProfesorController extends Controller
         $buscara = $request->p;
         $profesor = Profesor::orWhere('pro_dni', 'like', '%'.$buscara.'%')->first();
         return response()->json($profesor, 200);
+    }
+
+    public function contarProfesoresSi()
+    {
+        $contarProfesor = Profesor::where('pro_estado','=',1)->count();       
+        return response()->json($contarProfesor, 200);
+    }
+
+    public function contarProfesores()
+    {
+        $contarProfesorTotal = Profesor::count();       
+        return response()->json($contarProfesorTotal, 200);
     }
 }

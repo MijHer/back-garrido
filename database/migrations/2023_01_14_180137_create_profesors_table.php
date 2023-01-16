@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('pro_app');
             $table->string('pro_apm');
             $table->string('pro_dire')->nullable();
-            $table->integer('pro_telf');
+            $table->string('pro_telf');
             $table->string('pro_correo');
             $table->string('pro_sexo')->nullable();
-            $table->integer('pro_dni')->unique();
+            $table->string('pro_dni')->unique();
             $table->string('pro_grado_instruccion');
             $table->string('pro_especialidad')->nullable();
             $table->string('pro_pais')->nullable();
@@ -30,6 +30,12 @@ return new class extends Migration
             $table->string('pro_distrito');
             $table->boolean('pro_estado');
             $table->timestamps();
+        });
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('profesor_id')->after('usu_rgst')->nullable();
+            $table->foreign('profesor_id')->references('id')->on('profesors')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
         });
     }
 
@@ -40,6 +46,10 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_profesor_id_foreign');
+            $table->dropColumn('profesor_id');
+         });
         Schema::dropIfExists('profesors');
     }
 };

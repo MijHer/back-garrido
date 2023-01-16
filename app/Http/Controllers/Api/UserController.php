@@ -85,6 +85,8 @@ class UserController extends Controller
         $user->usu_dir = $request->usu_dir;
         $user->usu_telf = $request->usu_telf;
         $user->usu_rgst = date('Y-m-d // H:i:s' , strtotime($request->usu_rgst));
+        $user->profesor_id = $request->profesor_id;
+        $user->alumno_id = $request->alumno_id;
         $user->tipousuario_id = $request->tipousuario_id;
         $user->save();
         
@@ -129,6 +131,8 @@ class UserController extends Controller
         $user->usu_dir = $request->usu_dir;
         $user->usu_telf = $request->usu_telf;
         $user->usu_rgst = date('Y-m-d H:i:s' , strtotime($request->usu_rgst));
+        $user->profesor_id = $request->profesor_id;
+        $user->alumno_id = $request->alumno_id;
         $user->tipousuario_id = $request->tipousuario_id;
         $user->save();
         return response()->json([
@@ -153,5 +157,11 @@ class UserController extends Controller
             "mensaje" => "Usuarioa Eliminado",
             "error" => false
         ], 200);
+    }
+
+    public function contarUsers()
+    {
+        $contarUser = User::count();
+        return response()->json($contarUser, 200);
     }
 }
