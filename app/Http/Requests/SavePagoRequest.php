@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SavePagoRequest extends FormRequest
@@ -24,7 +25,7 @@ class SavePagoRequest extends FormRequest
     public function rules()
     {
         return [
-            'pago_fecha' => 'required|date',
+            'pago_fecha' => 'required',
             'pago_hora' => 'required',
             'pago_monto' => 'required',
             'pago_concepto' => 'required',

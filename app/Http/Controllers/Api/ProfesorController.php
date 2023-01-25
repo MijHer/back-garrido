@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveProfesorRequest;
 use App\Models\Profesor;
+use App\Models\Alumno;
 use Illuminate\Http\Request;
 
 class ProfesorController extends Controller

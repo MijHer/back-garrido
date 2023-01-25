@@ -26,6 +26,8 @@ return new class extends Migration
                 ->onDelete('set null');                    
             $table->string('anioacademico');
             $table->string('curso');
+            $table->string('grado');
+            $table->string('seccion');
             $table->dateTime('hora');
             $table->boolean('asistencia');
             $table->boolean('falta');

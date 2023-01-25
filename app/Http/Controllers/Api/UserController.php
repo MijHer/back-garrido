@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\Alumno;
 use App\Models\Profesor;
 use App\Models\Tipousuario;
 use Illuminate\Http\Request;

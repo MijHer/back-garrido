@@ -30,6 +30,7 @@ class PagoController extends Controller
      */
     public function store(SavePagoRequest $request)
     {
+        /* return $request; */
         Pago::create( $request->validated() );        
         return response()->json([
             "status" => 1,

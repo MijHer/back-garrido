@@ -6,6 +6,7 @@ use App\Models\Alumno;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveAlumnoRequest;
+use App\Models\Matricula;
 use App\Models\Profesor;
 use Illuminate\Support\Facades\Auth;
 
@@ -95,7 +96,8 @@ class AlumnoController extends Controller
     {
         $buscar = $request->q;
         $alumno = Alumno::orWhere('alu_nmr_doc', 'like', '%'.$buscar.'%')->with('apoderado')->first();
-        return response()->json($alumno, 200);
+        $matricula = Matricula::where('alumno_id', $alumno->id)->first();
+        return response()->json(['alumno'=>$alumno, 'matricula'=>$matricula], 200);
     }
 
     /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO NULO*/
@@ -124,7 +126,8 @@ class AlumnoController extends Controller
             'alumnos' => 'required'
         ]);
         /* $profesor_id = Auth::user()->profesor->id; */
-        $profesor = Profesor::where('user_id', Auth::user()->id)->first();
+        $profesor = Auth::user()->profesor;        
+        /* $profesor = Profesor::where('user_id', Auth::user()->id)->first(); */
         foreach ($request->alumnos as $alumno) {
             $alumno_id = $alumno['id'];
             $asistencia = $alumno['asistencia'];

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('usu_dir');
             $table->string('usu_telf');
             $table->dateTime('usu_rgst');
+            $table->boolean('usu_estado');
             $table->timestamps();
         });
     }
