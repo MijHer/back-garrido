@@ -13,7 +13,7 @@ class Pago extends Model
 
     public function alumno()
     {
-        return $this->BelongsTo(Alumno::class);
+        return $this->belongsTo(Alumno::class);
     }
 
     public function matricula()

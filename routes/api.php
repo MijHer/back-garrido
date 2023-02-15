@@ -73,6 +73,12 @@ Route::middleware('auth:sanctum')->group(function () {
 //BUSCA ALUMNO PARA MATRICULAS Y PAGOS
     Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
 
+    /* MUESTRA LOS CURSOS PARA QUE EL DOCENTE LLAMA LA LISTA */
+    Route::get("/v1/profesor/vistacursos-asistencia", [ProfesorController::class, "cursosParaAsistencia"]);
+    
+    Route::get("/v1/alumno-curso/{curso_id}/grado/{grado_id}/seccion={seccion}", [AlumnoController::class, "listaCursoGradoSeccion"]);
+
+
     Route::apiResource("v1/alumno", AlumnoController::class);
     Route::apiResource("v1/anioacademico", AnioacademicoController::class);
     Route::apiResource("v1/apoderado", ApoderadoController::class);

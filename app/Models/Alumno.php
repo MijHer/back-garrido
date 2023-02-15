@@ -16,9 +16,9 @@ class Alumno extends Model
         return $this->belongsTo(Apoderado::class);
     }
 
-    public function pago()
+    public function pagos()
     {
-        return $this->belongsTo(Pago::class);
+        return $this->hasMany(Pago::class);
     }
 
     public function matriculas()
@@ -28,10 +28,10 @@ class Alumno extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class)->with('tipousuario');
     }
     public function profesores()
     {
-        return $this->belongsToMany(Profesor::class)->withPivot('anioacademico', 'curso', 'hora', 'asistencia', 'falta', 'tardanza', 'permiso')->withTimestamps();
+        return $this->belongsToMany(Profesor::class)->withPivot('anioacademico', 'curso', 'grado', 'seccion', 'hora', 'asistencia', 'falta', 'tardanza', 'permiso')->withTimestamps();
     }
 }

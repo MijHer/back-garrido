@@ -8,6 +8,7 @@ use App\Models\Alumno;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SavePagoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PagoController extends Controller
 {
@@ -94,5 +95,5 @@ class PagoController extends Controller
     {
         $contarPago = Pago::count();
         return response()->json($contarPago, 200);
-    }
+    }    
 }

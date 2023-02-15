@@ -75,6 +75,7 @@ class UserController extends Controller
             'usu_dir' => 'required',
             'usu_telf' => 'required|max:9',
             'usu_rgst' => 'required',
+            'usu_estado' => 'required',
             'tipousuario_id' => 'required'
         ]);       
         $user = new User();
@@ -88,6 +89,7 @@ class UserController extends Controller
         $user->usu_rgst = date('Y-m-d // H:i:s' , strtotime($request->usu_rgst));
         $user->profesor_id = $request->profesor_id;
         $user->alumno_id = $request->alumno_id;
+        $user->usu_estado = $request->usu_estado;
         $user->tipousuario_id = $request->tipousuario_id;
         $user->save();
         

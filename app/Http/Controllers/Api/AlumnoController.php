@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveAlumnoRequest;
 use App\Models\Matricula;
-use App\Models\Profesor;
+use App\Models\Pago;
 use Illuminate\Support\Facades\Auth;
 
 class AlumnoController extends Controller
@@ -19,7 +19,7 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumno = Alumno::with('apoderado', 'profesores')->paginate();
+        $alumno = Alumno::with('apoderado', 'profesores', 'user', 'pagos')->paginate();
         return response()->json($alumno, 200);
     }
 
@@ -85,7 +85,7 @@ class AlumnoController extends Controller
         $alumno->delete();
         return response()->json([
             "status" => 1,
-            "mensaje" => "Alumno elimindado",
+            "mensaje" => "Alumno eliminado",
             "error" => false
         ], 200);
         
@@ -96,7 +96,7 @@ class AlumnoController extends Controller
     {
         $buscar = $request->q;
         $alumno = Alumno::orWhere('alu_nmr_doc', 'like', '%'.$buscar.'%')->with('apoderado')->first();
-        $matricula = Matricula::where('alumno_id', $alumno->id)->first();
+        $matricula = Matricula::orWhere('alumno_id', $alumno->id)->first();
         return response()->json(['alumno'=>$alumno, 'matricula'=>$matricula], 200);
     }
 
@@ -122,19 +122,17 @@ class AlumnoController extends Controller
     public function registrarAsistencia(Request $request)
     {
         $request->validate([
-            'curso_id' => 'required',
+            'curso' => 'required',
             'alumnos' => 'required'
         ]);
-        /* $profesor_id = Auth::user()->profesor->id; */
         $profesor = Auth::user()->profesor;        
-        /* $profesor = Profesor::where('user_id', Auth::user()->id)->first(); */
         foreach ($request->alumnos as $alumno) {
             $alumno_id = $alumno['id'];
             $asistencia = $alumno['asistencia'];
             $falta = $alumno['falta'];
             $tardanza = $alumno['tardanza'];
             $permiso = $alumno['permiso'];
-            $profesor->alumnos()->attach($alumno_id, ['anioacademico'=>"2022/11/09", 'curso'=>"religion", 'hora'=>"2022-11-08 22:44:39",'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
+            $profesor->alumnos()->attach($alumno_id, ['anioacademico'=>"2022/11/09", 'curso'=>$request->curso, 'grado'=>"promocion", 'seccion'=>"Z", 'hora'=>"2022-11-08 22:44:39",'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
         }
         return response()->json([
             "mensaje" => 'aqui mensaje'
@@ -145,4 +143,10 @@ class AlumnoController extends Controller
         $contarAlumno = Alumno::count();
         return response()->json($contarAlumno, 200);
     }
+
+    /* public function listaCursoGradoSeccion($curso_id, $grado_id, $seccion)
+    {
+        
+    } */
+        
 }

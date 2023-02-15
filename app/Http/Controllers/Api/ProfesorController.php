@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveProfesorRequest;
 use App\Models\Profesor;
-use App\Models\Alumno;
+use App\Models\Grado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfesorController extends Controller
 {
@@ -17,7 +18,7 @@ class ProfesorController extends Controller
      */
     public function index()
     {
-        $profesor = Profesor::with('user')->paginate();
+        $profesor = Profesor::with('user', 'cursos')->paginate();
         return response()->json($profesor, 200);
     }
 
@@ -94,10 +95,20 @@ class ProfesorController extends Controller
         $profesor = Profesor::orWhere('pro_dni', 'like', '%'.$buscara.'%')->first();
         return response()->json($profesor, 200);
     }
+    /* MUESTRA LOS CURSOS DE LOS DOCENTES ASIGNADOS PARA LLAMAR LA ASISTENCIA */
+    public function cursosParaAsistencia()
+    {       
+       $profesor = Profesor::find(Auth::user()->profesor->id);       
+       $profesor->cursos;
+       foreach($profesor->cursos as $curso){
+        $curso->pivot->grado = Grado::find($curso->pivot->grado_id);
+       }
+       return response()->json($profesor, 200);
+    }
 
     public function contarProfesoresSi()
     {
-        $contarProfesor = Profesor::where('pro_estado','=',1)->count();       
+        $contarProfesor = Profesor::where('pro_estado', 1)->count();       
         return response()->json($contarProfesor, 200);
     }
 

@@ -1,14 +1,15 @@
 GET http://127.0.0.1:8000/api/v1/profesor
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer 1|ga8nt0agfgmMPm7oJKODp2aNeDXCAjSuEJZi5ZFa
 
 ###Registrar profesor
 POST http://127.0.0.1:8000/api/v1/profesor
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer 1|ga8nt0agfgmMPm7oJKODp2aNeDXCAjSuEJZi5ZFa
 
-{
-    "user_id": 1,
+{    
     "pro_nom": "Carlin",
     "pro_app": "Mongo",
     "pro_apm": "Data",
