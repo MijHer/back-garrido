@@ -5,12 +5,13 @@ Accept: application/json
 POST http://127.0.0.1:8000/api/v1/apoderado
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer 3|hZCh5zWchqVY2OIE67TQBbm3DSgB3M0FMtBSUEjU
 
 {
-    "apo_nom": "Hugo",
-    "apo_app": "Melendez",
-    "apo_apm": "Gonzales",
-    "apo_dni": 25221211,
+    "apo_nom": "julia",
+    "apo_app": "manju",
+    "apo_apm": "bolaños",
+    "apo_dni": 25331200,
     "apo_telf": "958788853",
     "apo_dir": "PInos",
     "apo_fnac": "15/12/59",

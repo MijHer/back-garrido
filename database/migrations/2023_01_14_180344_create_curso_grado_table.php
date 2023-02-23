@@ -27,7 +27,7 @@ return new class extends Migration
                 ->onDelete('set null');
             $table->string("seccion");
             $table->string("nivel");
-            $table->string('anioacademico');
+            $table->integer('anioacademico_id');
             $table->boolean('estado');
             $table->timestamps();
         });

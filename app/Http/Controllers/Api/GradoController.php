@@ -111,12 +111,12 @@ class GradoController extends Controller
             'curso_id' => 'required',
             'seccion' => 'required',
             'nivel' => 'required',
-            'anioacademico' => 'required',
+            'anioacademico_id' => 'required',
             'estado' => 'required'
         ]);
 
         $grado = Grado::FindOrFail($id);
-        $grado->cursos()->attach($request->curso_id, ['seccion'=>$request->seccion, 'nivel'=>$request->nivel, 'anioacademico'=>$request->anioacademico, 'estado'=>1]);
+        $grado->cursos()->attach($request->curso_id, ['seccion'=>$request->seccion, 'nivel'=>$request->nivel, 'anioacademico_id'=>$request->anioacademico_id, 'estado'=>1]);
         $curso = $grado->cursos;
         return response()->json([
             "status" => 1,

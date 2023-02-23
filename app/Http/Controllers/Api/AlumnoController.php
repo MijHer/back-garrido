@@ -101,28 +101,28 @@ class AlumnoController extends Controller
     }
 
     /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO NULO*/
-    public function asistenciaAlumno(Request $request, $id)
+    /* public function asistenciaAlumno(Request $request, $id)
     {
         $request->validate([
             'alumno_id' => 'required',
             'profesor_id' => 'required',
-            'anioacademico' => 'required',
-            'curso' => 'required',
+            'anioacademico_id' => 'required',
+            'curso_id' => 'required',
             'hora' => 'required',
             'asistencia' => 'required',
             'falta' => 'required',
             'tardanza' => 'required',
             'permiso' => 'required'
-        ]);
-        /* $alumno = $asistencia */
+        ]);        
         $alumno = Alumno::findOrFail($id);
-        $alumno->profesores()->attach($request->alumno_id, ['anioacademico'=>$request, 'curso'=>$request, 'hora'=>$request, 'asistencia'=>1, 'falta'=>1, 'tardanza'=>1, 'permiso'=>1]);
-    }
+        $alumno->profesores()->attach($request->alumno_id, ['anioacademico_id'=>$request, 'curso_id'=>$request, 'hora'=>$request, 'asistencia'=>1, 'falta'=>1, 'tardanza'=>1, 'permiso'=>1]);
+    } */
+
     /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO FIRME*/
     public function registrarAsistencia(Request $request)
     {
         $request->validate([
-            'curso' => 'required',
+            'curso_id' => 'required',
             'alumnos' => 'required'
         ]);
         $profesor = Auth::user()->profesor;        
@@ -132,7 +132,7 @@ class AlumnoController extends Controller
             $falta = $alumno['falta'];
             $tardanza = $alumno['tardanza'];
             $permiso = $alumno['permiso'];
-            $profesor->alumnos()->attach($alumno_id, ['anioacademico'=>"2022/11/09", 'curso'=>$request->curso, 'grado'=>"promocion", 'seccion'=>"Z", 'hora'=>"2022-11-08 22:44:39",'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
+            $profesor->alumnos()->attach($alumno_id, ['anioacademico_id'=> 1, 'curso_id'=>$request->curso_id, 'grado_id'=>1, 'seccion'=>"Z", 'hora'=>"2022-11-08 22:44:39",'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
         }
         return response()->json([
             "mensaje" => 'aqui mensaje'

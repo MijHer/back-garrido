@@ -7,17 +7,17 @@ Authorization: Bearer 1|ga8nt0agfgmMPm7oJKODp2aNeDXCAjSuEJZi5ZFa
 POST http://127.0.0.1:8000/api/v1/profesor
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 1|ga8nt0agfgmMPm7oJKODp2aNeDXCAjSuEJZi5ZFa
+Authorization: Bearer 3|hZCh5zWchqVY2OIE67TQBbm3DSgB3M0FMtBSUEjU
 
 {    
-    "pro_nom": "Carlin",
-    "pro_app": "Mongo",
-    "pro_apm": "Data",
+    "pro_nom": "antonio",
+    "pro_app": "snahez",
+    "pro_apm": "solis",
     "pro_dire": "Jr los pinos",
     "pro_telf": "985563365",
     "pro_correo": "profersor@mail.com",
     "pro_sexo": "masculino",
-    "pro_dni": 25128000,
+    "pro_dni": 36589898,
     "pro_grado_instruccion": "superior",
     "pro_especialidad": "Trigonometria",
     "pro_pais": "peru",

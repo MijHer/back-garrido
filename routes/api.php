@@ -74,9 +74,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
 
     /* MUESTRA LOS CURSOS PARA QUE EL DOCENTE LLAMA LA LISTA */
-    Route::get("/v1/profesor/vistacursos-asistencia", [ProfesorController::class, "cursosParaAsistencia"]);
-    
+    Route::get("/v1/profesor/vistacursos-asistencia", [ProfesorController::class, "cursosParaAsistencia"]);    
     Route::get("/v1/alumno-curso/{curso_id}/grado/{grado_id}/seccion={seccion}", [AlumnoController::class, "listaCursoGradoSeccion"]);
+
+    /* MUESTRA LOS CURSOS PARA QUE EL DOCENTE REGISTRE LAS NOTAS */
+    Route::get("/v1/curso/vistacursos-nota", [CursoController::class, "cursoParaNota"]);
 
 
     Route::apiResource("v1/alumno", AlumnoController::class);

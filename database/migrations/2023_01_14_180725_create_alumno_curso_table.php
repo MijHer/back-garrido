@@ -24,14 +24,15 @@ return new class extends Migration
             $table->foreign("curso_id")->references("id")->on("cursos")
                 ->onUpdate('cascade')
                 ->onDelete('set null');
-            $table->string('anioacademico');
-            $table->string('profesor');
+            $table->integer('anioacademico_id');
+            $table->integer('profesor_id');
             $table->decimal('nota1', 10, 2);
             $table->decimal('nota2', 10, 2);
             $table->decimal('nota3', 10, 2);
             $table->decimal('nota4', 10, 2);
+            $table->decimal('promedio', 10, 2);
             $table->dateTime("fecha");
-            $table->string('obs');
+            $table->string('obs')->nullable();
             $table->timestamps();
         });
     }

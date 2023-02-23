@@ -24,9 +24,9 @@ return new class extends Migration
             $table->foreign("profesor_id")->references("id")->on("profesors")
                 ->onUpdate('cascade')
                 ->onDelete('set null');                    
-            $table->string('anioacademico');
-            $table->string('curso');
-            $table->string('grado');
+            $table->integer('anioacademico_id');
+            $table->integer('curso_id');
+            $table->integer('grado_id');
             $table->string('seccion');
             $table->dateTime('hora');
             $table->boolean('asistencia');

@@ -6,7 +6,9 @@ use App\Models\Curso;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveCursoRequest;
+use App\Models\Grado;
 use App\Models\Profesor;
+use Illuminate\Support\Facades\Auth;
 
 class CursoController extends Controller
 {
@@ -117,5 +119,16 @@ class CursoController extends Controller
 
         $curso = Curso::FindOrFail($id);
         $curso->profesores()->detach($request->profesor_id);
+    }
+
+    /* FUNCION PARA MOSTRAR LOS CURSOS Y ASIGNAR NOTAS POR DOCENTES */
+    public function cursoParaNota()
+    {
+        $profesor = Profesor::find(Auth::user()->profesor->id);
+        $profesor->cursos;
+        foreach ($profesor->cursos as $curso) {
+            $curso->pivot->grado = Grado::find($curso->pivot->grado_id);
+        }
+        return $profesor;
     }
 }

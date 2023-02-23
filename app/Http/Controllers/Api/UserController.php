@@ -60,23 +60,19 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::with('tipousuario')->get();
+        $user = User::with('tipousuario', 'alumno')->get();
         return response()->json($user, 200);
     }
     
     public function registro(Request $request)
     {   
         $request->validate([
-            'name' => 'required',
             'usu_dni' => 'required|max:8|unique:users',
             'email' => 'required|email|unique:users',
             'usu_user' => 'required',
             'password' => 'required|min:4',
             'usu_dir' => 'required',
             'usu_telf' => 'required|max:9',
-            'usu_rgst' => 'required',
-            'usu_estado' => 'required',
-            'tipousuario_id' => 'required'
         ]);       
         $user = new User();
         $user->name = $request->name;
@@ -133,9 +129,10 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->usu_dir = $request->usu_dir;
         $user->usu_telf = $request->usu_telf;
-        $user->usu_rgst = date('Y-m-d H:i:s' , strtotime($request->usu_rgst));
+        $user->usu_rgst = date('Y-m-d // H:i:s' , strtotime($request->usu_rgst));
         $user->profesor_id = $request->profesor_id;
         $user->alumno_id = $request->alumno_id;
+        $user->usu_estado = $request->usu_estado;
         $user->tipousuario_id = $request->tipousuario_id;
         $user->save();
         return response()->json([

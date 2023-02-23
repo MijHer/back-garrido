@@ -21,6 +21,6 @@ class Profesor extends Model
     }
     public function alumnos()
     {
-        return $this->belongsToMany(Alumno::class)->withPivot('anioacademico', 'curso', 'grado', 'seccion', 'hora', 'asistencia', 'falta', 'tardanza', 'permiso')->withTimestamps();
+        return $this->belongsToMany(Alumno::class)->withPivot('anioacademico_id', 'curso', 'grado_id', 'seccion', 'hora', 'asistencia', 'falta', 'tardanza', 'permiso')->withTimestamps();
     }
 }

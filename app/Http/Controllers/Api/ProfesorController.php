@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveProfesorRequest;
+use App\Models\Anioacademico;
 use App\Models\Profesor;
 use App\Models\Grado;
 use Illuminate\Http\Request;

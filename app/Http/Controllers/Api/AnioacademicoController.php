@@ -39,6 +39,9 @@ class AnioacademicoController extends Controller
         $anioacademico->anio_inicio = $request->anio_inicio;
         $anioacademico->anio_fin = $request->anio_fin;
         $anioacademico->anio_estado = $request->anio_estado;
+        $anioacademico->anio_pension_inicial = $request->anio_pension_inicial;
+        $anioacademico->anio_pension_primaria = $request->anio_pension_primaria;
+        $anioacademico->anio_pension_secundaria = $request->anio_pension_secundaria;
         $anioacademico->save();
         return response()->json([
             "status" => 1,
@@ -78,6 +81,9 @@ class AnioacademicoController extends Controller
         $anioacademico->anio_inicio = $request->anio_inicio;
         $anioacademico->anio_fin = $request->anio_fin;
         $anioacademico->anio_estado = $request->anio_estado;
+        $anioacademico->anio_pension_inicial = $request->anio_pension_inicial;
+        $anioacademico->anio_pension_primaria = $request->anio_pension_primaria;
+        $anioacademico->anio_pension_secundaria = $request->anio_pension_secundaria;
         $anioacademico->save();
         return response()->json([
             "status" => 1,
