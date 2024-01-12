@@ -31,7 +31,8 @@ return new class extends Migration
             $table->decimal('nota3', 10, 2);
             $table->decimal('nota4', 10, 2);
             $table->decimal('promedio', 10, 2);
-            $table->dateTime("fecha");
+            $table->date("fecha");
+            $table->time('hora');
             $table->string('obs')->nullable();
             $table->timestamps();
         });

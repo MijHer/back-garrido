@@ -5,17 +5,16 @@ Accept: application/json
 POST http://127.0.0.1:8000/api/v1/alumno
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 29|ewhAssmsGrgDjnfss0J61ebJ1PSz4NtobI7SMZRH
+Authorization: Bearer 2|iUXBu3CnFeIrWq25h8zNahni9oV7b45mRMiWXSvG
 
 {
     
-    "alu_foto": "foto hobbes",
-    "alu_nom": "hobbes",
-    "alu_app": "cordova",
-    "alu_apm": "castañeda",
+    "alu_nom": "dasha",
+    "alu_app": "tierra",
+    "alu_apm": "guerra",
     "alu_fnac": "2020-10-10",
     "alu_tipo_doc": "DNI",
-    "alu_nmr_doc": 22222222,
+    "alu_nmr_doc": 10101010,
     "alu_pais" : "Peru",
     "alu_departamento": "Pasco",
     "alu_provincia": "Pasco",
@@ -25,15 +24,15 @@ Authorization: Bearer 29|ewhAssmsGrgDjnfss0J61ebJ1PSz4NtobI7SMZRH
     "alu_app_madre": "Castañeda",
     "alu_apm_madre": "Yacolca",
     "alu_tipo_doc_madre": "DNI",
-    "alu_dni_madre": 23232323,
+    "alu_dni_madre": 23661089,
     "alu_civil_madre": "casada",    
     "alu_nom_padre": "Lorenzo",
     "alu_app_padre": "Cordova",
     "alu_apm_padre": "Garcia",
     "alu_tipo_doc_padre": "DNI",
-    "alu_dni_padre": 12121212,   
+    "alu_dni_padre": 69105877,   
     "alu_civil_padre": "casado",
-    "apoderado_id": 2
+    "apoderado_id": 4
 }
 
 ### Actualizar registro de alumno

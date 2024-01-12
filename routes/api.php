@@ -56,6 +56,8 @@ Route::middleware('auth:sanctum')->group(function () {
 //LLAMAR ASISTENCIA MASIVO
     Route::post("/v1/alumno/registrar-asistencia", [AlumnoController::class, "registrarAsistencia"]);
 
+    Route::post("/v1/alumno/registrar-notas", [AlumnoController::class, "guardarNotas"]);
+
 /* CONTAR CANTIDAD DE ALUMNOS INSCRITOS AL SISTEMA */
     Route::get("/v1/alumno/contar-alumnos", [AlumnoController::class, "contarAlumnos"]);
 
@@ -70,16 +72,24 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get("/v1/pago/contar-pagos", [PagoController::class, "contarPagos"]);
 
-//BUSCA ALUMNO PARA MATRICULAS Y PAGOS
+    /* BUSCA ALUMNO PARA MATRICULAS Y PAGOS */
     Route::get("/v1/alumno/buscar", [AlumnoController::class, "buscarAlumno"]);
 
+    /* LISTA LOS PAGOS REALIZADOS POR ALUMNO DASHBORAD ALUMNO */
+    Route::get("/v1/alumno/pago-alumno", [AlumnoController::class, "mostrarPagoAlumno"]);
+
+
     /* MUESTRA LOS CURSOS PARA QUE EL DOCENTE LLAMA LA LISTA */
-    Route::get("/v1/profesor/vistacursos-asistencia", [ProfesorController::class, "cursosParaAsistencia"]);    
-    Route::get("/v1/alumno-curso/{curso_id}/grado/{grado_id}/seccion={seccion}", [AlumnoController::class, "listaCursoGradoSeccion"]);
+    Route::get("/v1/profesor/vistacursos-asistencia", [ProfesorController::class, "cursosParaAsistencia"]);
+
+    /* MUESTRA A LISTA DE ALUMNO REGISTRADO AL CURSO-GRADO-SECCION PARA LA ASISTENCIA */
+    Route::get("/v1/alumno-curso/{curso_id}/grado/{grado_id}/seccion={seccion}", [AlumnoController::class, "listaAlumnoCursoGradoSeccion"]);
 
     /* MUESTRA LOS CURSOS PARA QUE EL DOCENTE REGISTRE LAS NOTAS */
     Route::get("/v1/curso/vistacursos-nota", [CursoController::class, "cursoParaNota"]);
 
+    /* PARA CAMBIAR AÑO ACADEMICO */    
+    Route::post("/v1/anioacademico/cambiaranio", [AnioacademicoController::class, "cabiarAnioacademico"]);
 
     Route::apiResource("v1/alumno", AlumnoController::class);
     Route::apiResource("v1/anioacademico", AnioacademicoController::class);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anioacademico;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AnioacademicoController extends Controller
@@ -33,11 +34,12 @@ class AnioacademicoController extends Controller
             'anio_fin' => 'required',
             'anio_estado' => 'required'  
         ]);
+        $date = Carbon::now();
         $anioacademico = new Anioacademico();
         $anioacademico->anio_nom = $request->anio_nom;
         $anioacademico->anio_detalle = $request->anio_detalle;
-        $anioacademico->anio_inicio = $request->anio_inicio;
-        $anioacademico->anio_fin = $request->anio_fin;
+        $anioacademico->anio_inicio = $date->format('Y-m-d', $request->anio_inicio);
+        $anioacademico->anio_fin = $date->format('Y-m-d', $request->anio_fin);
         $anioacademico->anio_estado = $request->anio_estado;
         $anioacademico->anio_pension_inicial = $request->anio_pension_inicial;
         $anioacademico->anio_pension_primaria = $request->anio_pension_primaria;
@@ -107,5 +109,22 @@ class AnioacademicoController extends Controller
             "mensaje" => "Anio Academico Eliminado",
             "error" => false
         ], 200);
+    }
+
+    public function cabiarAnioacademico(Request $request)
+    {
+        $anioacademico = Anioacademico::get();
+        foreach ($anioacademico as $acad) {
+            if ($acad->id == $request->id) {
+                $acad->anio_estado = 1;
+            } else {
+                $acad->anio_estado = 0;
+            }
+            $acad->update();
+        }
+        return response()->json([
+            "status" => 1,
+            "mensaje" => "Anio Academico actualizado"
+        ]);
     }
 }

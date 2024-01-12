@@ -6,8 +6,11 @@ use App\Models\Alumno;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveAlumnoRequest;
+use App\Models\Anioacademico;
+use App\Models\Curso;
 use App\Models\Matricula;
-use App\Models\Pago;
+use App\Models\Grado;
+use App\Models\Profesor;
 use Illuminate\Support\Facades\Auth;
 
 class AlumnoController extends Controller
@@ -96,7 +99,7 @@ class AlumnoController extends Controller
     {
         $buscar = $request->q;
         $alumno = Alumno::orWhere('alu_nmr_doc', 'like', '%'.$buscar.'%')->with('apoderado')->first();
-        $matricula = Matricula::orWhere('alumno_id', $alumno->id)->first();
+        $matricula = Matricula::orWhere('alumno_id', $alumno->id)->with('grado')->first();
         return response()->json(['alumno'=>$alumno, 'matricula'=>$matricula], 200);
     }
 
@@ -118,12 +121,13 @@ class AlumnoController extends Controller
         $alumno->profesores()->attach($request->alumno_id, ['anioacademico_id'=>$request, 'curso_id'=>$request, 'hora'=>$request, 'asistencia'=>1, 'falta'=>1, 'tardanza'=>1, 'permiso'=>1]);
     } */
 
-    /* FUNCION PARA REGISTRAR LAS ASISTENCIA DE LOS ALUMNO FIRME*/
+    /* FUNCION PARA REGISTRAR (GUARDAR) LAS ASISTENCIA DE LOS ALUMNOS EN LA TABLA PIVOT*/
     public function registrarAsistencia(Request $request)
     {
         $request->validate([
             'curso_id' => 'required',
             'alumnos' => 'required'
+            
         ]);
         $profesor = Auth::user()->profesor;        
         foreach ($request->alumnos as $alumno) {
@@ -132,21 +136,58 @@ class AlumnoController extends Controller
             $falta = $alumno['falta'];
             $tardanza = $alumno['tardanza'];
             $permiso = $alumno['permiso'];
-            $profesor->alumnos()->attach($alumno_id, ['anioacademico_id'=> 1, 'curso_id'=>$request->curso_id, 'grado_id'=>1, 'seccion'=>"Z", 'hora'=>"2022-11-08 22:44:39",'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
+            $profesor->alumnos()->attach($alumno_id, ['anioacademico_id'=>$request->anioacademico_id, 'curso_id'=>$request->curso_id, 'grado_id'=>$request->grado_id, 'seccion'=>$request->seccion, 'fecha'=>$request->fecha, 'hora'=>$request->hora,'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
         }
         return response()->json([
             "mensaje" => 'aqui mensaje'
         ]);
     }
+
+    public function guardarNotas(Request $request)
+    {
+        $request->validate([
+            'curso_id' => 'required',
+            'alumnos' => 'required',
+            'profesor_id' => 'required'            
+        ]);
+        $profesor = Auth::user()->profesor;
+        foreach ($request->alumnos as $alu) {
+            $alumno_id = $alu['alumno_id'];
+            $alumno = Alumno::find($alumno_id);
+            $alumno->cursos()->sync([$request->curso_id => ['anioacademico_id'=>$request->anioacademico_id, 'profesor_id'=>$request->profesor_id, 'nota1'=>$alu['nota1'], 'nota2'=>$alu['nota2'], 'nota3'=>$alu['nota3'], 'nota4'=>$alu['nota4'], 'promedio'=>$alu['promedio'], 'fecha'=>$request->fecha, 'hora'=>$request->hora, 'obs'=>$request->obs, 'grado_id'=>$request->grado_id, 'sec'=>$request->sec]]);
+        }
+        return response()->json([
+            "mensaje" => 'notas registradas'
+        ]);
+    }
+
+    
+
     public function contarAlumnos()
     {
         $contarAlumno = Alumno::count();
         return response()->json($contarAlumno, 200);
     }
 
-    /* public function listaCursoGradoSeccion($curso_id, $grado_id, $seccion)
+    public function mostrarPagoAlumno()
     {
-        
-    } */
-        
+        $alumno = Alumno::with('pagos')->find(Auth::user()->alumno->id);        
+        return response()->json($alumno, 200);
+    }
+    /* FUNCION PARA MOSTRAR LA LISTA DE ALUMNOS INSCRITO AL CURSO Y GRADO PARA LLAMAR ASISTENCIA */
+    public function listaAlumnoCursoGradoSeccion($curso_id, $grado_id, $seccion)
+    {
+        $anioacademico = Anioacademico::where('anio_estado', 1)->first();
+        $curso = Curso::with('grados.matriculas')->find($curso_id);
+
+        $matriculas = collect();
+
+        foreach ($curso->grados as $grado) {
+            if ($grado->id == $grado_id) {
+                $matriculas = $matriculas->merge($grado->matriculas->load('alumno'));
+            }
+        }
+        return $matriculas;                                        
+    }    
+    
 }

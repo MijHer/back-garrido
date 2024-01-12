@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveMatriculaRequest extends FormRequest
@@ -25,10 +26,10 @@ class SaveMatriculaRequest extends FormRequest
     {
         return [
             'mat_cod_modular' => 'nullable|max:7',
-            'mat_fecha' => 'required',
+            'mat_fecha' => ['required', 'date_format:Y-m-d'],
+            'mat_hora' => 'required',
             'mat_costo' => 'required',
             'mat_nivel' => 'required',
-            'mat_turno' => 'required',
             'mat_repit' => 'nullable',
             'mat_estado' => 'required',           
             'grado_id' => 'required',

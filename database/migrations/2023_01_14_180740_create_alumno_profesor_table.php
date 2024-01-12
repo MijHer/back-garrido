@@ -28,7 +28,8 @@ return new class extends Migration
             $table->integer('curso_id');
             $table->integer('grado_id');
             $table->string('seccion');
-            $table->dateTime('hora');
+            $table->date('fecha');
+            $table->time('hora');
             $table->boolean('asistencia');
             $table->boolean('falta');
             $table->boolean('tardanza');

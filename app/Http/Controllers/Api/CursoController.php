@@ -19,7 +19,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $curso = Curso::with('profesores')->get();
+        $curso = Curso::with('profesores', 'grados')->get();
         return response()->json($curso, 200);
     }
 
@@ -95,8 +95,7 @@ class CursoController extends Controller
         $request->validate([
             'profesor_id' => 'required',
             'grado_id' => 'required',
-            'anioacademico_id' => 'required',
-            'seccion' => 'required'
+            'anioacademico_id' => 'required'
         ]);
 
         $curso = Curso::FindOrFail($id);
@@ -109,7 +108,7 @@ class CursoController extends Controller
             "error" => false
         ], 200);
     }
-    
+
     /* FUNCION PARA ELIMINAR LA ASIGNACION DE CURSO Y DOCENTE */
     public function quitarProfesor(Request $request, $id)
     {

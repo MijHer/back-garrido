@@ -30,8 +30,14 @@ class Alumno extends Model
     {
         return $this->hasOne(User::class)->with('tipousuario');
     }
+
     public function profesores()
     {
-        return $this->belongsToMany(Profesor::class)->withPivot('anioacademico_id', 'curso_id', 'grado_id', 'seccion', 'hora', 'asistencia', 'falta', 'tardanza', 'permiso')->withTimestamps();
+        return $this->belongsToMany(Profesor::class)->withPivot('anioacademico_id', 'curso_id', 'grado_id', 'seccion', 'fecha', 'hora',  'asistencia', 'falta', 'tardanza', 'permiso')->withTimestamps();
+    }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class)->withPivot('anioacademico_id', 'profesor_id', 'nota1', 'nota2', 'nota3', 'nota4', 'promedio', 'fecha', 'hora', 'obs', 'grado_id', 'sec');
     }
 }

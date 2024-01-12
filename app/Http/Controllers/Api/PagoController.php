@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Pago;
 use Carbon\Carbon;
-use App\Models\Alumno;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SavePagoRequest;
@@ -95,5 +95,5 @@ class PagoController extends Controller
     {
         $contarPago = Pago::count();
         return response()->json($contarPago, 200);
-    }    
+    }
 }

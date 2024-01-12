@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id();
-            $table->string('alu_foto')->nullable();
             $table->string('alu_nom');
             $table->string('alu_app');
             $table->string('alu_apm');

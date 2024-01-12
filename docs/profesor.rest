@@ -7,17 +7,17 @@ Authorization: Bearer 1|ga8nt0agfgmMPm7oJKODp2aNeDXCAjSuEJZi5ZFa
 POST http://127.0.0.1:8000/api/v1/profesor
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 3|hZCh5zWchqVY2OIE67TQBbm3DSgB3M0FMtBSUEjU
+Authorization: Bearer 2|iUXBu3CnFeIrWq25h8zNahni9oV7b45mRMiWXSvG
 
 {    
-    "pro_nom": "antonio",
-    "pro_app": "snahez",
-    "pro_apm": "solis",
+    "pro_nom": "maycol",
+    "pro_app": "baldeon",
+    "pro_apm": "peris",
     "pro_dire": "Jr los pinos",
     "pro_telf": "985563365",
-    "pro_correo": "profersor@mail.com",
+    "pro_correo": "maycol@mail.com",
     "pro_sexo": "masculino",
-    "pro_dni": 36589898,
+    "pro_dni": 12598809,
     "pro_grado_instruccion": "superior",
     "pro_especialidad": "Trigonometria",
     "pro_pais": "peru",

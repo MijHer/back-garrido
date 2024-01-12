@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('anio_nom');
             $table->string('anio_detalle')->nullable();
-            $table->string('anio_inicio');
-            $table->string('anio_fin');
+            $table->date('anio_inicio');
+            $table->date('anio_fin');
             $table->boolean("anio_estado");
             $table->decimal('anio_pension_inicial', 10, 2);
             $table->decimal('anio_pension_primaria', 10, 2);
