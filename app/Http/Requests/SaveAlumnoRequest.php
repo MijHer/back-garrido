@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveAlumnoRequest extends FormRequest
@@ -27,7 +28,7 @@ class SaveAlumnoRequest extends FormRequest
             'alu_nom' => 'required',
             'alu_app' => 'required',
             'alu_apm' => 'required',
-            'alu_fnac' => 'required',
+            'alu_fnac' => 'required|date',
             'alu_tipo_doc' => 'required',
             'alu_nmr_doc' => 'required|max:8',
             'alu_pais' => 'required',
@@ -49,5 +50,17 @@ class SaveAlumnoRequest extends FormRequest
             'alu_civil_padre' => 'required',
             'apoderado_id' => 'required'
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'alu_fnac' => $this->formatFecha($this->alu_fnac),
+        ]);
+    }
+
+    protected function formatFecha($alu_fnac)
+    {
+        return Carbon::createFromFormat('d/m/Y', $alu_fnac)->format('Y-m-d');
     }
 }

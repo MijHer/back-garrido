@@ -25,7 +25,7 @@ class SavePagoRequest extends FormRequest
     public function rules()
     {
         return [
-            'pago_fecha' => 'required',
+            'pago_fecha' => 'required|date',
             'pago_hora' => 'required',
             'pago_monto' => 'required',
             'pago_concepto' => 'required',
@@ -33,5 +33,17 @@ class SavePagoRequest extends FormRequest
             'matricula_id' => 'required',
             'alumno_id' => 'required'
         ];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'pago_fecha' => $this->formatoFecha($this->pago_fecha),
+        ]);
+    }
+
+    protected function formatoFecha($pago_fecha)
+    {
+        // Realizar la conversión de formato aquí
+        return Carbon::createFromFormat('d/m/Y', $pago_fecha)->format('Y-m-d');
     }
 }

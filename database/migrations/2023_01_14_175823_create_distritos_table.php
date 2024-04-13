@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('distritos', function (Blueprint $table) {
             $table->id();
             $table->string('dist_nom');
-            $table->string('dist_rgst');
+            $table->date('dist_rgst');
             $table->timestamps();
         });
         Schema::table('matriculas', function (Blueprint $table){

@@ -30,6 +30,8 @@ return new class extends Migration
             $table->decimal('nota2', 10, 2);
             $table->decimal('nota3', 10, 2);
             $table->decimal('nota4', 10, 2);
+            $table->decimal('nota5', 10, 2);
+            $table->decimal('nota6', 10, 2);
             $table->decimal('promedio', 10, 2);
             $table->date("fecha");
             $table->time('hora');

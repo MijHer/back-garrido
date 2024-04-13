@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Departamento;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,10 @@ class DepartamentoController extends Controller
         $request->validate([
             'depa_nom' => 'required'
         ]);
+        $date = Carbon::now();
         $departamento = new Departamento();
         $departamento->depa_nom = $request->depa_nom;
-        $departamento->dape_rgst = $request->dape_rgst;
+        $departamento->dape_rgst = $date->format('Y-m-d', $request->dape_rgst);
         $departamento->save();
         return response()->json([
             "status" => 1,

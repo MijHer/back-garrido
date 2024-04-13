@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveApoderadoRequest extends FormRequest
@@ -30,10 +31,22 @@ class SaveApoderadoRequest extends FormRequest
             'apo_dni'=> 'required',
             'apo_telf' => 'nullable',
             'apo_dir' => 'required',
-            'apo_fnac' => 'required',
+            'apo_fnac' => 'required|date',
             'apo_vinculo' => 'required',
             'apo_grado_inst' => 'nullable',
             'apo_estado' => 'required'
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'apo_fnac' => $this->formatFecha($this->apo_fnac),
+        ]);
+    }
+
+    protected function formatFecha($apo_fnac)
+    {
+        return Carbon::createFromFormat('d/m/Y', $apo_fnac)->format('Y-m-d');
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cur_nom');
             $table->string('cur_descripcion')->nullable();
             $table->boolean('cur_estado');
-            $table->string('cur_registro');
+            $table->date('cur_registro');
             $table->timestamps();
         });
     }

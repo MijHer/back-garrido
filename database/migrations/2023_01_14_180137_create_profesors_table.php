@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('pro_grado_instruccion');
             $table->string('pro_especialidad')->nullable();
             $table->string('pro_pais')->nullable();
-            $table->string('pro_fnac')->nullable();
+            $table->date('pro_fnac')->nullable();
             $table->string('pro_distrito');
             $table->boolean('pro_estado');
             $table->timestamps();

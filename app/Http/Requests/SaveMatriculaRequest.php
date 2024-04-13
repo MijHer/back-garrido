@@ -26,7 +26,7 @@ class SaveMatriculaRequest extends FormRequest
     {
         return [
             'mat_cod_modular' => 'nullable|max:7',
-            'mat_fecha' => ['required', 'date_format:Y-m-d'],
+            'mat_fecha' => 'required|date',
             'mat_hora' => 'required',
             'mat_costo' => 'required',
             'mat_nivel' => 'required',
@@ -38,5 +38,17 @@ class SaveMatriculaRequest extends FormRequest
             'alumno_id' => 'required',
             'apoderado_id' => 'required'
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'mat_fecha' => $this->formatFecha($this->mat_fecha),
+        ]);
+    }
+
+    protected function formatFecha($mat_fecha)
+    {
+        return Carbon::createFromFormat('d/m/Y', $mat_fecha)->format('Y-m-d');
     }
 }
