@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Distrito;
 use App\Models\Provincia;
 use App\Models\Departamento;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DistritoController extends Controller
@@ -29,13 +30,14 @@ class DistritoController extends Controller
      */
     public function store(Request $request)
     {
+        $date = Carbon::now();
         $request->validate([
             'dist_nom' => 'required',
             'provincia_id' => 'required'
         ]);
         $distrito = new Distrito();
         $distrito->dist_nom = $request->dist_nom;
-        $distrito->dist_rgst = $request->dist_rgst;
+        $distrito->dist_rgst = $date->format('Y-m-d' ,$request->dist_rgst);
         $distrito->provincia_id = $request->provincia_id;        
         $distrito->save();
         return response()->json([

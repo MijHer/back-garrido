@@ -28,7 +28,7 @@ class ApoderadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(SaveApoderadoRequest $request)
-    {
+    {        
         Apoderado::create($request->validated());
         return response()->json([
             "status" => 1,

@@ -31,7 +31,7 @@ class SaveApoderadoRequest extends FormRequest
             'apo_dni'=> 'required',
             'apo_telf' => 'nullable',
             'apo_dir' => 'required',
-            'apo_fnac' => 'required|date',
+            'apo_fnac' => 'required|date_format:Y-m-d',
             'apo_vinculo' => 'required',
             'apo_grado_inst' => 'nullable',
             'apo_estado' => 'required'
@@ -47,6 +47,10 @@ class SaveApoderadoRequest extends FormRequest
 
     protected function formatFecha($apo_fnac)
     {
-        return Carbon::createFromFormat('d/m/Y', $apo_fnac)->format('Y-m-d');
+        try {            
+            return Carbon::parse($apo_fnac)->format('Y-m-d');
+        } catch (\Exception $e) {
+            return null; 
+        }
     }
 }

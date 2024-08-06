@@ -28,7 +28,7 @@ class SaveAlumnoRequest extends FormRequest
             'alu_nom' => 'required',
             'alu_app' => 'required',
             'alu_apm' => 'required',
-            'alu_fnac' => 'required|date',
+            'alu_fnac' => 'required|date_format:Y-m-d',
             'alu_tipo_doc' => 'required',
             'alu_nmr_doc' => 'required|max:8',
             'alu_pais' => 'required',
@@ -51,7 +51,7 @@ class SaveAlumnoRequest extends FormRequest
             'apoderado_id' => 'required'
         ];
     }
-
+    
     protected function prepareForValidation()
     {
         $this->merge([
@@ -61,6 +61,10 @@ class SaveAlumnoRequest extends FormRequest
 
     protected function formatFecha($alu_fnac)
     {
-        return Carbon::createFromFormat('d/m/Y', $alu_fnac)->format('Y-m-d');
+        try {            
+            return Carbon::parse($alu_fnac)->format('Y-m-d');
+        } catch (\Exception $e) {
+            return null; 
+        }
     }
 }

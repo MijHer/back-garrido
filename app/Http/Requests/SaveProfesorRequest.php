@@ -36,12 +36,12 @@ class SaveProfesorRequest extends FormRequest
             'pro_grado_instruccion' => 'required',
             'pro_especialidad' => 'nullable',
             'pro_pais' => 'nullable',
-            'pro_fnac' => 'required',
+            'pro_fnac' => 'required|date_format:Y-m-d',
             'pro_distrito' => 'required',
             'pro_estado' => 'required'
         ];
     }
-        
+
     protected function prepareForValidation()
     {
         $this->merge([
@@ -49,8 +49,12 @@ class SaveProfesorRequest extends FormRequest
         ]);
     }
 
-    protected function formatFecha($pro_fnac)
+    protected function  formatFecha($pro_fnac)
     {
-        return Carbon::createFromFormat('d/m/Y', $pro_fnac)->format('Y-m-d');
-    }
+        try {
+            return Carbon::parse($pro_fnac)->format('Y-m-d');
+        } catch (\Exception $e) {
+            return null;
+        }
+    }   
 }

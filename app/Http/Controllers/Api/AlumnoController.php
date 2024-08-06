@@ -11,7 +11,9 @@ use App\Models\Curso;
 use App\Models\Matricula;
 use App\Models\Grado;
 use App\Models\Profesor;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AlumnoController extends Controller
 {
@@ -129,6 +131,7 @@ class AlumnoController extends Controller
             'alumnos' => 'required'
             
         ]);
+        $date = Carbon::now();
         $profesor = Auth::user()->profesor;        
         foreach ($request->alumnos as $alumno) {
             $alumno_id = $alumno['id'];
@@ -136,33 +139,101 @@ class AlumnoController extends Controller
             $falta = $alumno['falta'];
             $tardanza = $alumno['tardanza'];
             $permiso = $alumno['permiso'];
-            $profesor->alumnos()->attach($alumno_id, ['anioacademico_id'=>$request->anioacademico_id, 'curso_id'=>$request->curso_id, 'grado_id'=>$request->grado_id, 'seccion'=>$request->seccion, 'fecha'=>$request->fecha, 'hora'=>$request->hora,'asistencia'=> $asistencia, 'falta'=>$falta, 'tardanza' => $tardanza, 'permiso' => $permiso]);
+            $profesor->alumnos()->attach($alumno_id, ['anioacademico_id'=>$request->anioacademico_id, 
+                                                        'curso_id'=>$request->curso_id, 
+                                                        'grado_id'=>$request->grado_id, 
+                                                        'seccion'=>$request->seccion, 
+                                                        'fecha'=>$date->format('Y-m-d', $request->fecha), 
+                                                        'hora'=>$request->hora,
+                                                        'asistencia'=> $asistencia, 
+                                                        'falta'=>$falta, 
+                                                        'tardanza' => $tardanza, 
+                                                        'permiso' => $permiso]);
         }
         return response()->json([
             "mensaje" => 'aqui mensaje'
         ]);
     }
+    /*FUNCION PARA REGISTRAR LAS NOTAS DE LOS ALUMNOS*/
+    //  public function guardarNotas(Request $request)
+    //  {
+    //      $date = Carbon::now();
+    //      $request->validate([
+    //          'curso_id' => 'required',
+    //          'alumnos' => 'required',
+    //          'profesor_id' => 'required'            
+    //      ]);
+    //      $profesor = Auth::user()->profesor;
+    //      foreach ($request->alumnos as $alu) {
+    //          $alumno_id = $alu['alumno_id'];
+    //          $alumno = Alumno::find($alumno_id);
+    //          $alumno->cursos()->sync([$request->curso_id => ['anioacademico_id'=>$request->anioacademico_id, 
+    //                                                          'profesor_id'=>$request->profesor_id, 
+    //                                                          'nota1'=>$alu['nota1'], 
+    //                                                          'nota2'=>$alu['nota2'], 
+    //                                                          'nota3'=>$alu['nota3'], 
+    //                                                          'nota4'=>$alu['nota4'], 
+    //                                                          'nota5'=>$alu['nota5'],
+    //                                                          'nota6'=>$alu['nota6'],
+    //                                                          'promedio'=>$alu['promedio'], 
+    //                                                          'fecha'=>$date->format('Y-m-d',$request->fecha), 
+    //                                                          'hora'=>$request->hora, 
+    //                                                          'obs'=>$request->obs, 
+    //                                                          'grado_id'=>$request->grado_id, 
+    //                                                          'sec'=>$request->sec]]);
+    //      }
+    //      return response()->json([
+    //          "mensaje" => 'notas registradas'
+    //      ]);
+    //  }
 
     public function guardarNotas(Request $request)
-    {
-        $request->validate([
-            'curso_id' => 'required',
-            'alumnos' => 'required',
-            'profesor_id' => 'required'            
-        ]);
-        $profesor = Auth::user()->profesor;
-        foreach ($request->alumnos as $alu) {
-            $alumno_id = $alu['alumno_id'];
-            $alumno = Alumno::find($alumno_id);
-            $alumno->cursos()->sync([$request->curso_id => ['anioacademico_id'=>$request->anioacademico_id, 'profesor_id'=>$request->profesor_id, 'nota1'=>$alu['nota1'], 'nota2'=>$alu['nota2'], 'nota3'=>$alu['nota3'], 'nota4'=>$alu['nota4'], 'promedio'=>$alu['promedio'], 'fecha'=>$request->fecha, 'hora'=>$request->hora, 'obs'=>$request->obs, 'grado_id'=>$request->grado_id, 'sec'=>$request->sec]]);
+{
+    $date = Carbon::now();
+    $request->validate([
+        'curso_id' => 'required',
+        'alumnos' => 'required',
+        'profesor_id' => 'required'
+    ]);
+    
+    foreach ($request->alumnos as $alu) {
+        $alumno_id = $alu['alumno_id'];
+        $alumno = Alumno::find($alumno_id);
+
+        $notas = [
+            'anioacademico_id' => $request->anioacademico_id, 
+            'profesor_id' => $request->profesor_id,
+            'fecha' => $date->format('Y-m-d', $request->fecha),
+            'hora' => $request->hora,
+            'obs' => $request->obs,
+            'grado_id' => $request->grado_id,
+            'sec' => $request->sec
+        ];
+
+        // Agrega las notas solo si están presentes
+        $sumaNotas = 0;
+        $contadorNotas = 0;
+
+        if (array_key_exists('nota1', $alu)) { $notas['nota1'] = $alu['nota1']; $sumaNotas += $alu['nota1']; $contadorNotas++; }
+        if (array_key_exists('nota2', $alu)) { $notas['nota2'] = $alu['nota2']; $sumaNotas += $alu['nota2']; $contadorNotas++; }
+        if (array_key_exists('nota3', $alu)) { $notas['nota3'] = $alu['nota3']; $sumaNotas += $alu['nota3']; $contadorNotas++; }
+        if (array_key_exists('nota4', $alu)) { $notas['nota4'] = $alu['nota4']; $sumaNotas += $alu['nota4']; $contadorNotas++; }
+        if (array_key_exists('nota5', $alu)) { $notas['nota5'] = $alu['nota5']; $sumaNotas += $alu['nota5']; $contadorNotas++; }
+        if (array_key_exists('nota6', $alu)) { $notas['nota6'] = $alu['nota6']; $sumaNotas += $alu['nota6']; $contadorNotas++; }
+
+        // Calcula el promedio si hay notas presentes
+        if ($contadorNotas > 0) {
+            $notas['promedio'] = $sumaNotas / $contadorNotas;
         }
-        return response()->json([
-            "mensaje" => 'notas registradas'
-        ]);
+
+        $alumno->cursos()->sync([$request->curso_id => $notas]);
     }
+    
+    return response()->json($notas, 200);
+}
 
     
-
+    //funcion para contabilizar la cantidad de alumnos
     public function contarAlumnos()
     {
         $contarAlumno = Alumno::count();
@@ -187,7 +258,37 @@ class AlumnoController extends Controller
                 $matriculas = $matriculas->merge($grado->matriculas->load('alumno'));
             }
         }
-        return $matriculas;                                        
-    }    
+        return $matriculas;
+    }
+
+    /* FUNCION PARA MOSTRAR LA LISTA DE ALUMNOS INSCRITO AL CURSO Y GRADO PARA INSERTAR LAS NOTAS */
+    public function listaAlumnoCursoGradoSecciones($curso_id, $grado_id, $seccion)
+    {
+        $anioacademico = Anioacademico::where('anio_estado', 1)->first();
+
+    $matriculas = DB::table('alumno_curso')
+        ->join('alumnos', 'alumno_curso.alumno_id', '=', 'alumnos.id')
+        ->where('alumno_curso.curso_id', $curso_id)
+        ->where('alumno_curso.grado_id', $grado_id)
+        ->where('alumno_curso.anioacademico_id', $anioacademico->id)
+        ->select(
+            'alumnos.id as alumno_id',
+            'alumnos.alu_nom',
+            'alumnos.alu_app',
+            'alumno_curso.nota1',
+            'alumno_curso.nota2',
+            'alumno_curso.nota3',
+            'alumno_curso.nota4',
+            'alumno_curso.nota5',
+            'alumno_curso.nota6',
+            'alumno_curso.promedio',
+            'alumno_curso.fecha',
+            'alumno_curso.hora',
+            'alumno_curso.obs'
+        )
+        ->get();
+
+    return response()->json($matriculas, 200);
+    }
     
 }

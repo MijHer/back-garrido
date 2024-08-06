@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Provincia;
 use App\Models\Departamento;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProvinciaController extends Controller
@@ -28,6 +29,7 @@ class ProvinciaController extends Controller
      */
     public function store(Request $request)
     {
+        $date = Carbon::now();
         $request->validate([
             'prov_nom' => 'required',
             'prov_rgst' => 'required',
@@ -35,7 +37,7 @@ class ProvinciaController extends Controller
         ]);
         $provincia = new Provincia();
         $provincia->prov_nom = $request->prov_nom;
-        $provincia->prov_rgst = $request->prov_rgst;
+        $provincia->prov_rgst = $date->format('Y-m-d',$request->prov_rgst);
         $provincia->departamento_id = $request->departamento_id;
         $provincia->save();
         return response()->json([

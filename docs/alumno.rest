@@ -5,16 +5,16 @@ Accept: application/json
 POST http://127.0.0.1:8000/api/v1/alumno
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 2|iUXBu3CnFeIrWq25h8zNahni9oV7b45mRMiWXSvG
+Authorization: Bearer 22|rdOw8wVdYNQJ3GR57INhQJ8FadvHDnWUIX0JqlaE
 
 {
     
-    "alu_nom": "dasha",
-    "alu_app": "tierra",
-    "alu_apm": "guerra",
-    "alu_fnac": "2020-10-10",
+    "alu_nom": "pietro",
+    "alu_app": "mungia ",
+    "alu_apm": "calixto",
+    "alu_fnac": "10/10/2024",
     "alu_tipo_doc": "DNI",
-    "alu_nmr_doc": 10101010,
+    "alu_nmr_doc": 30303030,
     "alu_pais" : "Peru",
     "alu_departamento": "Pasco",
     "alu_provincia": "Pasco",
@@ -32,7 +32,7 @@ Authorization: Bearer 2|iUXBu3CnFeIrWq25h8zNahni9oV7b45mRMiWXSvG
     "alu_tipo_doc_padre": "DNI",
     "alu_dni_padre": 69105877,   
     "alu_civil_padre": "casado",
-    "apoderado_id": 4
+    "apoderado_id": 8
 }
 
 ### Actualizar registro de alumno

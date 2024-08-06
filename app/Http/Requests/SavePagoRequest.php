@@ -37,13 +37,17 @@ class SavePagoRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'pago_fecha' => $this->formatoFecha($this->pago_fecha),
+            'pago_fecha' => $this->formatFecha($this->pago_fecha),
         ]);
     }
 
-    protected function formatoFecha($pago_fecha)
+    protected function formatFecha($pago_fecha)
     {
-        // Realizar la conversión de formato aquí
-        return Carbon::createFromFormat('d/m/Y', $pago_fecha)->format('Y-m-d');
+        try {
+            return Carbon::parse($pago_fecha)->format('Y-m-d');
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
+    
 }

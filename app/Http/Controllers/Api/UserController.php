@@ -20,11 +20,11 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            "email" => "required|email",
+            "usu_dni" => "required",
             "password" => "required"
         ]);
 
-        $user = User::where("email", "=", $request->email)->first();
+        $user = User::where("usu_dni", "=", $request->usu_dni)->first();
         if(isset($user->id)){
             if(Hash::check($request->password, $user->password)){
                 $token = $user->createToken('auth_token')->plainTextToken;

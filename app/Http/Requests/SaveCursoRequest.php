@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use PhpParser\Node\Stmt\TryCatch;
 
 class SaveCursoRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class SaveCursoRequest extends FormRequest
             'cur_nom' => 'required',
             'cur_descripcion' => 'nullable',
             'cur_estado' => 'required',
-            'cur_registro' => 'required|date'
+            'cur_registro' => 'required|date_format:Y-m-d'
         ];
     }
 
@@ -41,6 +42,11 @@ class SaveCursoRequest extends FormRequest
 
     protected function formatFecha($cur_registro)
     {
-        return Carbon::createFromFormat('d/m/Y', $cur_registro)->format('Y-m-d');
+        try {
+            return Carbon::parse($cur_registro)->format('Y-m-d');
+        } catch (\Exception $e) {
+            return null;
+        }
     }
+
 }

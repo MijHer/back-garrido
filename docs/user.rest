@@ -22,6 +22,7 @@ Content-Type: application/json
     "usu_dir": "alamos",
     "usu_telf": 957533395,
     "usu_rgst": "2020-07-8",
+    "usu_estado": true,
     "tipousuario_id": 1
 }
 

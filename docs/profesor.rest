@@ -7,7 +7,7 @@ Authorization: Bearer 1|ga8nt0agfgmMPm7oJKODp2aNeDXCAjSuEJZi5ZFa
 POST http://127.0.0.1:8000/api/v1/profesor
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 2|iUXBu3CnFeIrWq25h8zNahni9oV7b45mRMiWXSvG
+Authorization: Bearer 4|qvfVd4UdY62Xl3BEaDSijiCMEdOvPmQqARa2jwr4
 
 {    
     "pro_nom": "maycol",

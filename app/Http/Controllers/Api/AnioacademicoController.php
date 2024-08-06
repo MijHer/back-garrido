@@ -28,6 +28,7 @@ class AnioacademicoController extends Controller
      */
     public function store(Request $request)
     {
+        $date = now();
         $request->validate([
             'anio_nom' => 'required',
             'anio_inicio' => 'required',

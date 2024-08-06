@@ -21,6 +21,6 @@ class Curso extends Model
     }
     public function alumnos()
     {
-        return $this->belongsToMany(Alumno::class)->withPivot('anioacademico_id', 'profesor_id', 'nota1', 'nota2', 'nota3', 'nota4', 'promedio', 'fecha', 'hora', 'obs', 'grado_id', 'sec');
+        return $this->belongsToMany(Alumno::class)->withPivot('anioacademico_id', 'profesor_id', 'nota1', 'nota2', 'nota3', 'nota4','nota5','nota6', 'promedio', 'fecha', 'hora', 'obs', 'grado_id', 'sec');
     }
 }

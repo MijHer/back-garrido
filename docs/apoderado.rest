@@ -5,7 +5,7 @@ Accept: application/json
 POST http://127.0.0.1:8000/api/v1/apoderado
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 1|5f0uugvJ3UG73ngKNEmvZq11UoWry5TLNHhX5Xcb
+Authorization: Bearer 4|qvfVd4UdY62Xl3BEaDSijiCMEdOvPmQqARa2jwr4
 
 {
     "apo_nom": "marcos",

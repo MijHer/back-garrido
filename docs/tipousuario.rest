@@ -8,10 +8,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "tipo_nom": "Administrador",
-    "tipo_descripcion": "ADMIN",
+    "tipo_nom": "contador",
+    "tipo_descripcion": "Docente",
     "tipo_estado": true
 }
+
 
 ### Modificar tipousuario
 PATCH http://127.0.0.1:8000/api/v1/tipousuario/2
