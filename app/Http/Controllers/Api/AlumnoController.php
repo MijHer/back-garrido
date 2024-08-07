@@ -275,6 +275,7 @@ class AlumnoController extends Controller
             'alumnos.id as alumno_id',
             'alumnos.alu_nom',
             'alumnos.alu_app',
+            'alumnos.alu_apm',
             'alumno_curso.nota1',
             'alumno_curso.nota2',
             'alumno_curso.nota3',
@@ -284,7 +285,12 @@ class AlumnoController extends Controller
             'alumno_curso.promedio',
             'alumno_curso.fecha',
             'alumno_curso.hora',
-            'alumno_curso.obs'
+            'alumno_curso.obs',
+            'alumno_curso.profesor_id',
+            'alumno_curso.anioacademico_id',
+            'alumno_curso.grado_id',
+            'alumno_curso.sec'
+
         )
         ->get();
 

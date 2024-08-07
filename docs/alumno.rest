@@ -5,16 +5,16 @@ Accept: application/json
 POST http://127.0.0.1:8000/api/v1/alumno
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 22|rdOw8wVdYNQJ3GR57INhQJ8FadvHDnWUIX0JqlaE
+Authorization: Bearer 80|VManpy44jzzmOkz4FneGvhW2AuIuTdCNKmtF4DWl
 
 {
     
-    "alu_nom": "pietro",
-    "alu_app": "mungia ",
+    "alu_nom": "martiza",
+    "alu_app": "caebllo ",
     "alu_apm": "calixto",
     "alu_fnac": "10/10/2024",
     "alu_tipo_doc": "DNI",
-    "alu_nmr_doc": 30303030,
+    "alu_nmr_doc": 60606060,
     "alu_pais" : "Peru",
     "alu_departamento": "Pasco",
     "alu_provincia": "Pasco",
@@ -24,13 +24,13 @@ Authorization: Bearer 22|rdOw8wVdYNQJ3GR57INhQJ8FadvHDnWUIX0JqlaE
     "alu_app_madre": "Castañeda",
     "alu_apm_madre": "Yacolca",
     "alu_tipo_doc_madre": "DNI",
-    "alu_dni_madre": 23661089,
+    "alu_dni_madre": 23611089,
     "alu_civil_madre": "casada",    
     "alu_nom_padre": "Lorenzo",
     "alu_app_padre": "Cordova",
     "alu_apm_padre": "Garcia",
     "alu_tipo_doc_padre": "DNI",
-    "alu_dni_padre": 69105877,   
+    "alu_dni_padre": 69205877,   
     "alu_civil_padre": "casado",
     "apoderado_id": 8
 }
