@@ -266,32 +266,35 @@ class AlumnoController extends Controller
     {
         $anioacademico = Anioacademico::where('anio_estado', 1)->first();
 
-    $matriculas = DB::table('alumno_curso')
-        ->join('alumnos', 'alumno_curso.alumno_id', '=', 'alumnos.id')
-        ->where('alumno_curso.curso_id', $curso_id)
-        ->where('alumno_curso.grado_id', $grado_id)
-        ->where('alumno_curso.anioacademico_id', $anioacademico->id)
-        ->select(
-            'alumnos.id as alumno_id',
-            'alumnos.alu_nom',
-            'alumnos.alu_app',
-            'alumnos.alu_apm',
-            'alumno_curso.nota1',
-            'alumno_curso.nota2',
-            'alumno_curso.nota3',
-            'alumno_curso.nota4',
-            'alumno_curso.nota5',
-            'alumno_curso.nota6',
-            'alumno_curso.promedio',
-            'alumno_curso.fecha',
-            'alumno_curso.hora',
-            'alumno_curso.obs',
-            'alumno_curso.profesor_id',
-            'alumno_curso.anioacademico_id',
-            'alumno_curso.grado_id',
-            'alumno_curso.sec'
-
-        )
+        $matriculas = DB::table('alumno_curso')
+            ->join('alumnos', 'alumno_curso.alumno_id', '=', 'alumnos.id')
+            ->join('profesors', 'alumno_curso.profesor_id', '=', 'profesors.id')
+            ->join('anioacademicos', 'alumno_curso.anioacademico_id', '=', 'anioacademicos.id')
+            ->where('alumno_curso.curso_id', $curso_id)
+            ->where('alumno_curso.grado_id', $grado_id)
+            ->where('alumno_curso.anioacademico_id', $anioacademico->id)
+            ->select(
+                'alumnos.id as alumno_id',
+                'alumnos.alu_nom',
+                'alumnos.alu_app',
+                'alumnos.alu_apm',
+                'alumno_curso.nota1',
+                'alumno_curso.nota2',
+                'alumno_curso.nota3',
+                'alumno_curso.nota4',
+                'alumno_curso.nota5',
+                'alumno_curso.nota6',
+                'alumno_curso.promedio',
+                'alumno_curso.fecha',
+                'alumno_curso.hora',
+                'alumno_curso.obs',
+                'alumno_curso.profesor_id',
+                'profesors.pro_nom as pro_nom',
+                'anioacademicos.anio_nom as anio_nom',
+                'alumno_curso.anioacademico_id',
+                'alumno_curso.grado_id',
+                'alumno_curso.sec'
+            )
         ->get();
 
     return response()->json($matriculas, 200);
