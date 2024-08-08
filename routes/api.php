@@ -103,7 +103,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("v1/grado", GradoController::class);
     Route::apiResource("v1/matricula", MatriculaController::class);
     Route::apiResource("v1/pago", PagoController::class);
-    Route::apiResource("v1/profesor", ProfesorController::class);
+    //Route::apiResource("v1/profesor", ProfesorController::class);
     Route::apiResource("v1/provincia", ProvinciaController::class);
     Route::apiResource("v1/tipousuario", TipousuarioController::class);
+});
+
+Route::middleware(['auth:sanctum', 'role:Docente'])->group(function () {
+    // Añadir rutas específicas para administradores aquí
+    Route::apiResource("v1/profesor", ProfesorController::class);
+
 });
